@@ -52,9 +52,6 @@ export class ChordProgGeneratorService {
       this.track.addEvent(note);
     }
 
-    //let note = new NoteEvent({pitch:['C4', 'E4', 'G4'], duration: '4'});
-    //this.track.addEvent(note);
-
     let write = new Writer([this.track]);
     let data = write.dataUri();
     console.log(data);
