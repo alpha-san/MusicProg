@@ -1,3 +1,6 @@
+// Different types of scales
+// refer to https://en.wikipedia.org/wiki/List_of_musical_scales_and_modes
+
 export class Scale {
     name: string;
     type: string;
@@ -7,6 +10,4 @@ export class Scale {
         Object.assign(this, values);
     }
 
-    // TODO
-    // Add Chord ref
 }

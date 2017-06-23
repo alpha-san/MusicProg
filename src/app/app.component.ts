@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { Chord } from './chord';
+import { Scale } from './scale';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ import { Chord } from './chord';
 })
 export class AppComponent {
 
+  selectedScale: Scale;
+
   listOfChords: Chord[];
 
   title = 'app works';
@@ -18,7 +21,10 @@ export class AppComponent {
   }
 
   public ngOnInit() {
-    this.listOfChords  = this.chordProgGeneratorService.getAllChords();
+    if (!this.selectedScale)
+      this.selectedScale = new Scale({ name: 'C', type: 'Major' });
+
+    this.listOfChords  = this.chordProgGeneratorService.getAllChords(this.selectedScale);
   }
 
   addChord(chord: Chord) {

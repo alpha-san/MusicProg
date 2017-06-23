@@ -22,7 +22,7 @@ export class ChordProgGeneratorService {
 
   allChords: Chord[];
 
-  getAllChords(): Chord[] {
+  getAllChords(scale: Scale): Chord[] {
     return [ 
               new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}), 
               new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'})
@@ -41,7 +41,7 @@ export class ChordProgGeneratorService {
     return this;
   }
 
-  generateMidiFile(): ChordProgGeneratorService {
+  generateMidiFile(): string {
 
     this.track = new Track();
     this.track.addEvent(new ProgramChangeEvent({instrument : 1}));
@@ -56,9 +56,10 @@ export class ChordProgGeneratorService {
     //this.track.addEvent(note);
 
     let write = new Writer([this.track]);
-    console.log(write.dataUri());
+    let data = write.dataUri();
+    console.log(data);
 
-    return this;
+    return data;
 
   } 
 

@@ -2,6 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { Chord } from './chord';
+import { Scale } from './scale';
 
 describe('ChordProgGeneratorService', () => {
   beforeEach(() => {
@@ -16,7 +17,7 @@ describe('ChordProgGeneratorService', () => {
 
   it('should be able to add chords', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
     expect(service.chords.length).toEqual(0);
-    service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
+    service.addChord(new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}));
     expect(service.chords.length).toEqual(1);
     service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
     expect(service.chords.length).toEqual(2);
@@ -24,7 +25,7 @@ describe('ChordProgGeneratorService', () => {
 
   it('should be able to remove chords', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
     // delete chords
-    service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
+    service.addChord(new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}));
     service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
     expect(service.chords.length).toEqual(2);
     service.deleteChord(1);
@@ -33,10 +34,18 @@ describe('ChordProgGeneratorService', () => {
     expect(service.chords.length).toEqual(0);
 
     // delete in different order
-    service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
+    service.addChord(new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}));
     service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
     service.deleteChord(4);
     expect(service.chords.length).toEqual(1);
+  }));
+
+  it('should not remove chords if id is not valid', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
+    service.addChord(new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}));
+    service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
+    expect(service.chords.length).toEqual(2);
+    service.deleteChord(11);
+    expect(service.chords.length).toEqual(2);
   }));
 
   it('should be able to change the bpm', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
@@ -46,6 +55,18 @@ describe('ChordProgGeneratorService', () => {
   }));
 
   it('should be able to generate a midi file', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
-
+    service.addChord(new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}));
+    service.addChord(new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'}));
+    expect(service.generateMidiFile()).toContain('data:audio/midi;base64');
   }));
+
+  // TODO
+  // make test more precise
+  // check to see if chords have same notes as scale
+  it('should be able to retrieve a list of chords based on scale', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
+    let cMajorScale = new Scale({name: 'C', type: 'Major'});
+    let cMajorChords = service.getAllChords(cMajorScale);
+    expect(cMajorChords.length).toBeGreaterThan(0);
+  }));
+
 });

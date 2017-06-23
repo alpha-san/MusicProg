@@ -1,4 +1,5 @@
-import {Chord} from './chord';
+import { Chord } from './chord';
+import { Scale } from './scale';
 
 describe('Chord', () => {
   it('should create an instance', () => {
@@ -12,7 +13,8 @@ describe('Chord', () => {
       name: 'C',
       type: 'Major',
       notes: ['c', 'e', 'g'],
-      fileUrl: '/assets/audio/cmajor.wav'
+      fileUrl: '/assets/audio/cmajor.wav',
+      belongsToScale: new Scale({})
     });
 
     expect(chord.id).toEqual(0);
