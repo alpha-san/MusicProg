@@ -1,6 +1,8 @@
-# Musicprogtest
+# MusicProg
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3.
+An easy way to learn music theory by creating chord progressions.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3 and [MidiWriterJS](https://github.com/grimmdude/MidiWriterJS).
 
 ## Development server
 
