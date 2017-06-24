@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-h1 {
+h1, h2, h3, h4 {
     font-family: 'Open Sans', sans-serif;
+}
+
+.selectedChord {
+    display: inline-block;
+}
+
+.chordProgressionListFooter {
+    margin-top: 50px;
+}
+
+#generateMidiButton {
+    width: 100%;
 }

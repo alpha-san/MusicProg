@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 
 @NgModule({
@@ -9,7 +10,8 @@ import { ChordProgGeneratorService } from './chord-prog-generator.service';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     ChordProgGeneratorService

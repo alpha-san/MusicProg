@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
+import { ScaleDataService } from './scale-data.service';
 import { Chord } from './chord';
 import { Scale } from './scale';
 
@@ -7,20 +8,28 @@ import { Scale } from './scale';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ChordProgGeneratorService]
+  providers: [
+    ChordProgGeneratorService,
+    ScaleDataService
+  ]
 })
 export class AppComponent {
 
   selectedScale: Scale;
 
+  listOfScales: Scale[];
+
   listOfChords: Chord[];
 
   title = 'app works';
 
-  constructor(private chordProgGeneratorService: ChordProgGeneratorService) {
+  constructor(private chordProgGeneratorService: ChordProgGeneratorService,
+              private scaleDataService: ScaleDataService) {
   }
 
   public ngOnInit() {
+    this.listOfScales = this.scaleDataService.getAllScales();
+
     if (!this.selectedScale)
       this.selectedScale = new Scale({ name: 'C', type: 'Major' });
 
