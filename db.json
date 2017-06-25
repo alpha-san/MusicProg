@@ -1,0 +1,134 @@
+{
+    "chords": [
+        {
+            "id": 1,
+            "name": "C",
+            "type": "Triad",
+            "notes": ["C3", "E3", "G3"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 2,
+            "name": "Dm",
+            "type": "Triad",
+            "notes": ["D3", "F3", "A3"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 3,
+            "name": "Em",
+            "type": "Triad",
+            "notes": ["E3", "G3", "B3"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 4,
+            "name": "F",
+            "type": "Triad",
+            "notes": ["F3", "A3", "C4"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 5,
+            "name": "G",
+            "type": "Triad",
+            "notes": ["G3", "B3", "D4"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 6,
+            "name": "Am",
+            "type": "Triad",
+            "notes": ["A3", "C3", "E4"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        },
+        {
+            "id": 7,
+            "name": "B",
+            "type": "Triad",
+            "notes": ["B2", "D3", "F3"],
+            "fileUrl": "",
+            "belongsToScaleId": [1]
+        }
+    ],
+    "scales": [
+        {
+            "id": 1,
+            "name": "C",
+            "type": "Major",
+            "notes": ["C", "D", "E", "F", "G", "A", "B"]
+        },
+        {
+            "id": 2,
+            "name": "Db",
+            "type": "Major",
+            "notes": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"]
+        },
+        {
+            "id": 3,
+            "name": "D",
+            "type": "Major",
+            "notes": ["D", "E", "F#", "G", "A", "B", "C#"]
+        },
+        {
+            "id": 4,
+            "name": "Eb",
+            "type": "Major",
+            "notes": ["Eb", "F", "G", "Ab", "Bb", "C", "D"]
+        },
+        {
+            "id": 5,
+            "name": "E",
+            "type": "Major",
+            "notes": ["E", "F#", "G#", "A", "B", "C#", "D#"]
+        },
+        {
+            "id": 6,
+            "name": "F",
+            "type": "Major",
+            "notes": ["F", "G", "A", "Bb", "C", "D", "E"]
+        },
+        {
+            "id": 7,
+            "name": "Gb",
+            "type": "Major",
+            "notes": ["Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F"]
+        },
+        {
+            "id": 8,
+            "name": "G",
+            "type": "Major",
+            "notes": ["G", "A", "B", "C", "D", "E", "F#"]
+        },
+        {
+            "id": 9,
+            "name": "Ab",
+            "type": "Major",
+            "notes": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"]
+        },
+        {
+            "id": 10,
+            "name": "A",
+            "type": "Major",
+            "notes": ["A", "B", "C#", "D", "E", "F#", "G#"]
+        },
+        {
+            "id": 11,
+            "name": "Bb",
+            "type": "Major",
+            "notes": ["Bb", "C", "D", "Eb", "F", "G", "A"]
+        },
+        {
+            "id": 12,
+            "name": "B",
+            "type": "Major",
+            "notes": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
+        }
+    ]
+}

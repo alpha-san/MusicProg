@@ -8,7 +8,7 @@ export class Chord {
     type: string;
     notes: Array<string>;
     fileUrl: string;
-    belongsToScale: Scale;
+    belongsToScaleId: Array<number>;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

@@ -20,15 +20,6 @@ export class ChordProgGeneratorService {
     this.chords = [];
   }
 
-  allChords: Chord[];
-
-  getAllChords(scale: Scale): Chord[] {
-    return [ 
-              new Chord({ name: 'C', type: 'Major', notes: ['C3', 'E3', 'G3'], fileUrl: '/assets/audio/cmajor.wav'}), 
-              new Chord({ name: 'D', type: 'Major', notes: ['D3', 'F#3', 'A3'], fileUrl: '/assets/audio/dmajor.wav'})
-           ];
-  }
-
   addChord(chord: Chord): ChordProgGeneratorService {
     chord.setId(++this.lastId);
     this.chords.push(chord);
@@ -64,4 +55,5 @@ export class ChordProgGeneratorService {
     this.bpm = bpm;
     return this;
   }
+
 }

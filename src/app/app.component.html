@@ -6,9 +6,9 @@
     <p>Lorem Khaled Ipsum is a major key to success. They key is to have every key, the key to open every door. Another one. How’s business? Boomin. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. How’s business? Boomin. They don’t want us to win. We don’t see them, we will never see them. Life is what you make it, so let’s make it. In life there will be road blocks but we will over come it. Look at the sunset, life is amazing, life is beautiful, life is what you make it. The other day the grass was brown, now it’s green because I ain’t give up. Never surrender.</p>
   </section>
 
-  <section class="scaleSelector">
+  <section class="scaleSelector" *ngIf="listOfScales.length > 0">
     <p>Select a scale</p>
-    <select [(ngModel)]="selectedScale">
+    <select (change)="onScaleChange($event)" [(ngModel)]="selectedScale">
       <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}}</option>
     </select>
   </section>
@@ -31,13 +31,18 @@
   </section>
 
   <section class="generateMidi">
-    <button class="btn btn-default generateMidiButton" (click)="onGenerateMidiFile()">generate midi</button>
+    <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">generate midi</button>
   </section>
 
   <section class="chordProgressionListFooter">
     <span style="font-weight: bold; font-size: 14pt;">Chords selected:</span>
 
-    <div class="selectedChord">
+    <div class="selectedChord" *ngFor="let chord of selectedChords">
+      <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
+      <button (click)="removeChord(chord.id)">x</button>
+    </div>
+
+    <!--<div class="selectedChord">
       <span class="selectedChordName">Cmaj</span>
       <button>x</button>
       ,
@@ -57,7 +62,7 @@
     <div class="selectedChord">
       <span class="selectedChordName">Cmin9</span>
       <button>x</button>
-    </div>
+    </div>-->
 
   </section>
 

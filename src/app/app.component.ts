@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { ScaleDataService } from './scale-data.service';
 import { Chord } from './chord';
@@ -13,13 +13,15 @@ import { Scale } from './scale';
     ScaleDataService
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   selectedScale: Scale;
 
-  listOfScales: Scale[];
+  listOfScales: Scale[] = [];
 
-  listOfChords: Chord[];
+  listOfChords: Chord[] = [];
+
+  selectedChords: Chord[] = [];
 
   title = 'app works';
 
@@ -28,16 +30,40 @@ export class AppComponent {
   }
 
   public ngOnInit() {
-    this.listOfScales = this.scaleDataService.getAllScales();
+    this.scaleDataService
+      .getAllScales()
+      .subscribe(
+        (scales) => {
+          this.listOfScales = scales;
+        }
+      );
 
+/*
     if (!this.selectedScale)
       this.selectedScale = new Scale({ name: 'C', type: 'Major' });
 
-    this.listOfChords  = this.chordProgGeneratorService.getAllChords(this.selectedScale);
+    this.scaleDataService
+      .getChordsBasedOnScaleId(this.selectedScale.id)
+      .subscribe(
+        (chords) => {
+          this.listOfChords = chords;
+        }
+      );*/
+  }
+
+  onScaleChange(scale: EventEmitter<Scale>) {
+    this.scaleDataService
+      .getChordsBasedOnScaleId(this.selectedScale.id)
+      .subscribe(
+        (chords) => {
+          this.listOfChords = chords;
+        }
+      );
   }
 
   addChord(chord: Chord) {
     console.log('addChord');
+    this.selectedChords.push(chord);
     this.chordProgGeneratorService.addChord(chord);
     return this;
   }
@@ -45,6 +71,13 @@ export class AppComponent {
   onGenerateMidiFile() {
     console.log('onGenerateMidiFile');
     return this.chordProgGeneratorService.generateMidiFile();
+  }
+
+  removeChord(id: number) {
+    console.log('remove chord id: ' + id);
+    this.selectedChords = this.selectedChords.filter(
+      chord => chord.id !== id
+    );
   }
 
   playChord() {
