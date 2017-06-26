@@ -3,67 +3,49 @@
     <h1>MusicProg</h1>
     <h3>an easy way to learn music theory</h3>
 
-    <p>Lorem Khaled Ipsum is a major key to success. They key is to have every key, the key to open every door. Another one. How’s business? Boomin. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. How’s business? Boomin. They don’t want us to win. We don’t see them, we will never see them. Life is what you make it, so let’s make it. In life there will be road blocks but we will over come it. Look at the sunset, life is amazing, life is beautiful, life is what you make it. The other day the grass was brown, now it’s green because I ain’t give up. Never surrender.</p>
+    <p>Lorem Khaled Ipsum is a major key to success. They key is to have every key, the key to open every door. Another one.
+      How’s business? Boomin. I’m giving you cloth talk, cloth. Special cloth alert, cut from a special cloth. How’s business?
+      Boomin. They don’t want us to win. We don’t see them, we will never see them. Life is what you make it, so let’s make
+      it. In life there will be road blocks but we will over come it. Look at the sunset, life is amazing, life is beautiful,
+      life is what you make it. The other day the grass was brown, now it’s green because I ain’t give up. Never surrender.</p>
   </section>
 
   <section class="scaleSelector" *ngIf="listOfScales.length > 0">
     <p>Select a scale</p>
-    <select (change)="onScaleChange($event)" [(ngModel)]="selectedScale">
+    <select (change)="onScaleChange($event)" id="soflow" [(ngModel)]="selectedScale">
       <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}}</option>
     </select>
   </section>
 
   <br />
 
-  <section class="chordSelection" *ngIf="listOfChords.length > 0">
+    <!-- code to play audio file -->
+    <!--
+    <button class="btn btn-default" onclick="playFile('/assets/audio/Cowboy Bebop (Draft 3).mp3')">play chord</button>
+    -->
+
+  <section class="chordSelection" *ngIf="listOfChords.length > 0" >
+    <p>Select a few chords for your progression</p>
     <ul class="chords-list">
       <li *ngFor="let chord of listOfChords">
         <label>{{chord.name}} {{chord.type}}</label>
         <button class="btn btn-default" (click)="addChord(chord)">add chord</button>
       </li>
     </ul>
-
-    <!-- code to play audio file -->
-    <!--
-    <button class="btn btn-default" onclick="playFile('/assets/audio/Cowboy Bebop (Draft 3).mp3')">play chord</button>
-    -->
-
   </section>
 
-  <section class="generateMidi">
-    <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">generate midi</button>
-  </section>
-
-  <section class="chordProgressionListFooter">
+  <section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">
     <span style="font-weight: bold; font-size: 14pt;">Chords selected:</span>
 
     <div class="selectedChord" *ngFor="let chord of selectedChords">
       <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-      <button (click)="removeChord(chord.id)">x</button>
+      <button (click)="removeChord(chord.id)">x</button> &nbsp;
     </div>
 
-    <!--<div class="selectedChord">
-      <span class="selectedChordName">Cmaj</span>
-      <button>x</button>
-      ,
-    </div>
+  </section>
 
-    <div class="selectedChord">
-      <span class="selectedChordName">Cmaj7</span>
-      <button>x</button>
-      ,
-    </div>
-
-    <div class="selectedChord">
-      <span class="selectedChordName">Cmaj9</span>
-      <button>x</button>,
-    </div>
-
-    <div class="selectedChord">
-      <span class="selectedChordName">Cmin9</span>
-      <button>x</button>
-    </div>-->
-
+  <section class="generateMidi" *ngIf="selectedChords.length > 0">
+    <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">generate midi</button>
   </section>
 
 </div>

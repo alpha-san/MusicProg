@@ -2,11 +2,21 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ScaleDataService } from './scale-data.service';
 import { Scale } from './scale';
+import { Chord } from './chord';
+
+import { ApiService } from './api.service';
+import { ApiMockService } from './api-mock.service';
 
 describe('ScaleDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ScaleDataService]
+      providers: [ 
+        ScaleDataService ,
+        {
+          provide: ApiService,
+          useClass: ApiMockService
+        }
+      ]
     });
   });
 
@@ -14,8 +24,4 @@ describe('ScaleDataService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('should be able to retrieve list of scales', inject([ScaleDataService], (service: ScaleDataService) => {
-    let scales: Scale[] = service.getAllScales();  
-    expect(scales.length).toBeGreaterThan(0);
-  }));
 });

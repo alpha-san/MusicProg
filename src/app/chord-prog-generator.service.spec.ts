@@ -60,13 +60,4 @@ describe('ChordProgGeneratorService', () => {
     expect(service.generateMidiFile()).toContain('data:audio/midi;base64');
   }));
 
-  // TODO
-  // make test more precise
-  // check to see if chords have same notes as scale
-  it('should be able to retrieve a list of chords based on scale', inject([ChordProgGeneratorService], (service: ChordProgGeneratorService) => {
-    let cMajorScale = new Scale({name: 'C', type: 'Major'});
-    let cMajorChords = service.getAllChords(cMajorScale);
-    expect(cMajorChords.length).toBeGreaterThan(0);
-  }));
-
 });

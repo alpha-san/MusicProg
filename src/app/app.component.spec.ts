@@ -1,13 +1,34 @@
 import { TestBed, async } from '@angular/core/testing';
 
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ScaleDataService } from './scale-data.service';
+import { ChordProgGeneratorService } from './chord-prog-generator.service';
+
+import { ApiService } from './api.service';
+import { ApiMockService } from './api-mock.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        ScaleDataService,
+        ChordProgGeneratorService,
+        {
+          provide: ApiService,
+          useClass: ApiMockService
+        }
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
     }).compileComponents();
   }));
 
@@ -17,16 +38,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('MusicProg');
-  }));
 });
