@@ -1,4 +1,41 @@
-<div class="container">
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">MusicProg</h3>
+          <nav class="nav nav-masthead">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" href="#">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        <h1 class="cover-heading">MusicProg</h1>
+        <p class="lead">an easy way to learn music theory via chord progressions</p>
+        <p class="lead">
+          <a href="#" class="btn btn-lg btn-secondary">Get Started</a>
+        </p>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Website coded and designed by <a href="https://twitter.com/allanxaesthetic">@allanxaesthetic</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container" id="mainSqueeze">
   <section class="app-info">
     <h1>MusicProg</h1>
     <h3>an easy way to learn music theory</h3>
@@ -19,12 +56,12 @@
 
   <br />
 
-    <!-- code to play audio file -->
-    <!--
+  <!-- code to play audio file -->
+  <!--
     <button class="btn btn-default" onclick="playFile('/assets/audio/Cowboy Bebop (Draft 3).mp3')">play chord</button>
     -->
 
-  <section class="chordSelection" *ngIf="listOfChords.length > 0" >
+  <section class="chordSelection" *ngIf="listOfChords.length > 0">
     <p>Select a few chords for your progression</p>
     <ul class="chords-list">
       <li *ngFor="let chord of listOfChords">
