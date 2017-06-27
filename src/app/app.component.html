@@ -65,12 +65,26 @@
 
   <section class="chordSelection" *ngIf="listOfChords.length > 0">
     <p>Select a few chords for your progression</p>
+    <!--
     <ul class="chords-list">
       <li *ngFor="let chord of listOfChords">
         <label>{{chord.name}} {{chord.type}}</label>
         <button class="btn btn-default" (click)="addChord(chord)">add chord</button>
       </li>
-    </ul>
+    </ul>-->
+    <div class="chordsContainer">
+      <div class="chordDiv col-sm-3" *ngFor="let chord of listOfChords">
+        <label>{{chord.name}} {{chord.type}}</label> <br />
+
+        <div class="addChordButton glyphicon glyphicon-plus" (click)="addChord(chord)">
+        </div> 
+
+        <div class="playChordButton glyphicon glyphicon-volume-up" (click)="playFile(chord.fileUrl)">
+        </div>
+        <!--<button class="btn btn-default" (click)="addChord(chord)">add chord</button> -->
+      </div>
+    </div>
+
   </section>
 
   <section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">

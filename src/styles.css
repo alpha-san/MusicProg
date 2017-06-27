@@ -206,3 +206,24 @@ body {
     margin-top: 100px;
     margin-bottom: 100px;
 }
+
+.chordDiv {
+    height: 100px;
+    background-color: white;
+}
+
+.addChordButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.playChordButon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.chordsContainer {
+    position: relative;
+}
