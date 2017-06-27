@@ -48,12 +48,20 @@
   </section>
 
   <section class="scaleSelector" *ngIf="listOfScales.length > 0">
-    <p>Select a scale</p>
+    <p>
+      Select a scale
+
+       <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
+    </p>
     <select (change)="onScaleChange($event)" id="soflow" [(ngModel)]="selectedScale">
-      <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}}</option>
+      <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}} {{s.type}}</option>
     </select>
 
-    <button *ngIf="selectedScale" (click)="playFile(selectedScale.fileUrl)">Hear</button>
+    <div class="scaleButtonArea" *ngIf="selectedScale">
+    <button (click)="playFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">Listen &nbsp; <span class="glyphicon glyphicon-volume-up
+"></span></button>
+  <button class="btn btn-default" id="scaleNextButton">Next</button>
+    </div>
   </section>
 
   <br />
@@ -64,24 +72,22 @@
     -->
 
   <section class="chordSelection" *ngIf="listOfChords.length > 0">
-    <p>Select a few chords for your progression</p>
-    <!--
-    <ul class="chords-list">
-      <li *ngFor="let chord of listOfChords">
-        <label>{{chord.name}} {{chord.type}}</label>
-        <button class="btn btn-default" (click)="addChord(chord)">add chord</button>
-      </li>
-    </ul>-->
+    <p>
+      Select a few chords
+       <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
+    </p>
+
     <div class="chordsContainer">
       <div class="chordDiv col-sm-3" *ngFor="let chord of listOfChords">
         <label>{{chord.name}} {{chord.type}}</label> <br />
 
-        <div class="addChordButton glyphicon glyphicon-plus" (click)="addChord(chord)">
+        <div class="addChordButton" (click)="addChord(chord)">
+           <span class="glyphicon glyphicon-plus"></span>
         </div> 
 
-        <div class="playChordButton glyphicon glyphicon-volume-up" (click)="playFile(chord.fileUrl)">
+        <div class="playChordButton " (click)="playFile(chord.fileUrl)">
+           <span class="glyphicon glyphicon-volume-up"></span>
         </div>
-        <!--<button class="btn btn-default" (click)="addChord(chord)">add chord</button> -->
       </div>
     </div>
 

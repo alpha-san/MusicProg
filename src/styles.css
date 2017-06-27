@@ -212,18 +212,64 @@ body {
     background-color: white;
 }
 
-.addChordButton {
+.addChordButton, .playChordButton {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    width: 50%;
+    top: 50%;
+    height: 50px;
 }
 
-.playChordButon {
-    position: absolute;
-    bottom: 0;
+.addChordButton .glyphicon,
+.playChordButton .glyphicon {
+    top: 25%;
+}
+
+/*.chordSelection :nth-child(even) {
+    background-color: lightgreen;
+}
+.chordSelection :nth-child(odd) {
+    background-color: lightyellow;
+}*/
+
+.playChordButton {
     left: 0;
+    background-color: lightskyblue;
+}
+
+.addChordButton {
+    right: 0;
+    background-color: palevioletred;
 }
 
 .chordsContainer {
     position: relative;
+}
+
+#soflow {
+    width: 100%;
+    font-size: 16pt;
+}
+
+select#soflow option {
+    font-size: 16pt;
+}
+
+.scaleSelector {
+    height: 120px;
+    position: relative;
+}
+
+#scaleHearButton {
+    left: 0;
+}
+
+#scaleHearButton, #scaleNextButton {
+    width: 50%;
+    display: inline-block;
+    position: absolute;
+}
+
+.chordDiv label {
+    color: black;
+    margin-top: 5px;
 }
