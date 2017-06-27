@@ -5,7 +5,7 @@
             "name": "C",
             "type": "Triad",
             "notes": ["C3", "E3", "G3"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/C%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -13,7 +13,7 @@
             "name": "Dm",
             "type": "Triad",
             "notes": ["D3", "F3", "A3"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/D%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -21,7 +21,7 @@
             "name": "Em",
             "type": "Triad",
             "notes": ["E3", "G3", "B3"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/E%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -29,7 +29,7 @@
             "name": "F",
             "type": "Triad",
             "notes": ["F3", "A3", "C4"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/F%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -37,7 +37,7 @@
             "name": "G",
             "type": "Triad",
             "notes": ["G3", "B3", "D4"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/G%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -45,7 +45,7 @@
             "name": "Am",
             "type": "Triad",
             "notes": ["A3", "C3", "E4"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/A%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         },
         {
@@ -53,7 +53,7 @@
             "name": "B",
             "type": "Triad",
             "notes": ["B2", "D3", "F3"],
-            "fileUrl": "",
+            "fileUrl": "https://musicprog.blob.core.windows.net/chords/B%20Major%20Triad.wav",
             "belongsToScaleId": [1]
         }
     ],
@@ -62,73 +62,85 @@
             "id": 1,
             "name": "C",
             "type": "Major",
-            "notes": ["C", "D", "E", "F", "G", "A", "B"]
+            "notes": ["C", "D", "E", "F", "G", "A", "B"],
+            "fileUrl": "https://musicprog.blob.core.windows.net/scales/C%20Major%20Scale.wav"
         },
         {
             "id": 2,
             "name": "Db",
             "type": "Major",
-            "notes": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"]
+            "notes": ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+            "fileUrl": ""
         },
         {
             "id": 3,
             "name": "D",
             "type": "Major",
-            "notes": ["D", "E", "F#", "G", "A", "B", "C#"]
+            "notes": ["D", "E", "F#", "G", "A", "B", "C#"],
+            "fileUrl": ""
         },
         {
             "id": 4,
             "name": "Eb",
             "type": "Major",
-            "notes": ["Eb", "F", "G", "Ab", "Bb", "C", "D"]
+            "notes": ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+            "fileUrl": ""
         },
         {
             "id": 5,
             "name": "E",
             "type": "Major",
-            "notes": ["E", "F#", "G#", "A", "B", "C#", "D#"]
+            "notes": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+            "fileUrl": ""
         },
         {
             "id": 6,
             "name": "F",
             "type": "Major",
-            "notes": ["F", "G", "A", "Bb", "C", "D", "E"]
+            "notes": ["F", "G", "A", "Bb", "C", "D", "E"],
+            "fileUrl": ""
         },
         {
             "id": 7,
             "name": "Gb",
             "type": "Major",
-            "notes": ["Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F"]
+            "notes": ["Gb", "Ab", "Bb", "Cb", "Db", "Eb", "F"],
+            "fileUrl": ""
         },
         {
             "id": 8,
             "name": "G",
             "type": "Major",
-            "notes": ["G", "A", "B", "C", "D", "E", "F#"]
+            "notes": ["G", "A", "B", "C", "D", "E", "F#"],
+            "fileUrl": ""
         },
         {
             "id": 9,
             "name": "Ab",
             "type": "Major",
-            "notes": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"]
+            "notes": ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+            "fileUrl": ""
         },
         {
             "id": 10,
             "name": "A",
             "type": "Major",
-            "notes": ["A", "B", "C#", "D", "E", "F#", "G#"]
+            "notes": ["A", "B", "C#", "D", "E", "F#", "G#"],
+            "fileUrl": ""
         },
         {
             "id": 11,
             "name": "Bb",
             "type": "Major",
-            "notes": ["Bb", "C", "D", "Eb", "F", "G", "A"]
+            "notes": ["Bb", "C", "D", "Eb", "F", "G", "A"],
+            "fileUrl": ""
         },
         {
             "id": 12,
             "name": "B",
             "type": "Major",
-            "notes": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
+            "notes": ["B", "C#", "D#", "E", "F#", "G#", "A#"],
+            "fileUrl": ""
         }
     ]
 }

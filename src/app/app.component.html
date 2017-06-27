@@ -52,6 +52,8 @@
     <select (change)="onScaleChange($event)" id="soflow" [(ngModel)]="selectedScale">
       <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}}</option>
     </select>
+
+    <button *ngIf="selectedScale" (click)="playFile(selectedScale.fileUrl)">Hear</button>
   </section>
 
   <br />

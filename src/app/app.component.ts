@@ -51,6 +51,12 @@ export class AppComponent implements OnInit {
       );*/
   }
 
+  playFile(fileUrl: string) {
+    var audio = new Audio(fileUrl);
+    audio.load();
+    audio.play();
+  }
+
   onScaleChange(scale: EventEmitter<Scale>) {
     this.scaleDataService
       .getChordsBasedOnScaleId(this.selectedScale.id)
