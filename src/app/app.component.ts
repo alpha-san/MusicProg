@@ -60,16 +60,14 @@ export class AppComponent implements OnInit {
   playChordProgression() {
     for (let i: number = 0; i < this.selectedChords.length; i++) {
       let chord: Chord = this.selectedChords[i];
-      let timeToStartNote: number = i;
-      console.log('i = ' + i);
-      (function(chord, timeToStartNote) {
-        setTimeout(function() {
-          console.log('playChordProgression: ' + timeToStartNote);
-          let audio = new Audio(chord.fileUrl);
-          audio.load();
-          audio.play();
-        }, timeToStartNote);
-      })(chord)
+      let timeToStartNote: number = i * 1000;
+
+      setTimeout(function() {
+        let audio = new Audio(chord.fileUrl);
+        audio.load();
+        audio.play();
+      }, timeToStartNote);
+
     }
   }
 

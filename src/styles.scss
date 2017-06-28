@@ -11,7 +11,7 @@ $primary-font-color: #fff;
 }
 
 .selectedChord {
-    display: inline-block;
+    display: inline;
 }
 
 .chordProgressionListFooter {
@@ -106,13 +106,36 @@ select#scaleSelectDropdown Option {
 }
 
 #chordProgressionListDiv {
+  float: left;
   display: inline-block;
   width: 70%;
 }
 
 #chordProgressionListenDiv {
+  float: right;
   display: inline-block;
   width: 30%;
+  min-height: 28px;
+}
+
+#chordsSelectedLabel {
+ font-weight: bold;
+ font-size: 14pt;
+ text-align: left;
+}
+
+#selectedChordListDiv {
+  width: 71%;
+  display: inline-block;
+}
+
+.chordSelection {
+  width: 90%;
+  margin: auto;
+}
+
+.chordNote {
+  color: grey;
 }
 
 /*

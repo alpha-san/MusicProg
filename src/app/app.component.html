@@ -84,7 +84,7 @@
           <label>{{chord.name}} {{chord.type}}</label> <br />
 
           <div>  
-            <span *ngFor="let note of chord.notes; let isLast=last">
+            <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
               {{note[0]}}{{isLast ? '' : ', '}}
             </span>
           </div>
@@ -105,22 +105,28 @@
 
   <section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">
     <div id="chordProgressionListDiv">
-      <span style="font-weight: bold; font-size: 14pt;">Chords selected:</span>
+      <span id="chordsSelectedLabel">Chords selected:</span>
 
-      <div class="selectedChord" *ngFor="let chord of selectedChords">
-        <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-        <button (click)="removeChord(chord.id)">x</button> &nbsp;
+      <div id="selectedChordListDiv">
+        <div class="selectedChord" *ngFor="let chord of selectedChords">
+          <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
+          <button (click)="removeChord(chord.id)">x</button> &nbsp;
+        </div>
       </div>
+
     </div>
 
-    <div id="chordProgressionListenDiv" (click)="playChordProgression()">
+    <div id="chordProgressionListenDiv" (click)="playChordProgression()" class="btn btn-default">
+      Listen
       <span class="glyphicon glyphicon-volume-up"></span>
     </div>
 
   </section>
 
   <section class="generateMidi" *ngIf="selectedChords.length > 0">
-    <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">generate midi</button>
+    <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">
+      Generate Midi
+    </button>
   </section>
 
 </div>
