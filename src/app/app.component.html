@@ -1,25 +1,32 @@
-<app-info></app-info>
+<app-info
+  (getStarted)="getAllScales()"
+>
+</app-info>
 
 <app-scale-selector 
   *ngIf="listOfScales.length > 0"
   [scales]="listOfScales" 
   (selectScale)="onScaleChange($event)"
-  (playFile)="playFile($event)">
+  (playFile)="playFile($event)"
+  (scaleSelectionComplete)="onScaleSelectionComplete($event)"
+  >
 </app-scale-selector>
 
 <app-chord-selector 
-  *ngIf="listOfChords.length > 0"
+  *ngIf="scaleSelectionComplete"
   [chords]="listOfChords"
   [selectedChords]="selectedChords"
   (addChord)="addChord($event)"
   (playFile)="playFile($event)"
   (removeChord)="removeChord($event)"
   (playChordProgression)="playChordProgression()"
+  (chordSelectionComplete)="onChordSelectionComplete($event)"
+  (backButtonPress)="onScaleSelectionComplete(false)"
 >
 </app-chord-selector>
 
 <app-generate-midi
-  *ngIf="selectedChords.length > 0"
+  *ngIf="chordSelectionComplete"
   (generateMidi)="onGenerateMidiFile()"
 >
 </app-generate-midi>

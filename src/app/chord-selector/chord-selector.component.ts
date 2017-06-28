@@ -24,6 +24,12 @@ export class ChordSelectorComponent implements OnInit {
   @Output()
   playChordProgression: EventEmitter<Chord> = new EventEmitter();
 
+  @Output()
+  chordSelectionComplete: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  backButtonPress: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -43,6 +49,14 @@ export class ChordSelectorComponent implements OnInit {
 
   onPlayChordProgression() {
     this.playChordProgression.emit();
+  }
+
+  onChordSelectionComplete(status: boolean) {
+    this.chordSelectionComplete.emit(status);
+  }
+
+  onBackButtonPress() {
+    this.backButtonPress.emit();
   }
 
 }

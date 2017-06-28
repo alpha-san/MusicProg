@@ -18,6 +18,9 @@ export class ScaleSelectorComponent implements OnInit {
   @Output()
   playFile: EventEmitter<String> = new EventEmitter();
 
+  @Output()
+  scaleSelectionComplete: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -30,6 +33,10 @@ export class ScaleSelectorComponent implements OnInit {
   onPlayFile(fileUrl: String) {
     console.log(fileUrl);
     this.playFile.emit(fileUrl);
+  }
+
+  onScaleSelectionComplete(status: boolean) {
+    this.scaleSelectionComplete.emit(status);
   }
 
 }

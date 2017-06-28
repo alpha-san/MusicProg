@@ -1,8 +1,11 @@
 <div class="chordSelection">
-  <p>
+
+  <button class="btn btn-default" (click)="onBackButtonPress()">Back</button>
+
+  <h1>
     Select a few chords
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
-  </p>
+  </h1>
 
   <div class="row chordsContainer">
     <div *ngFor="let chord of chords; let i = index">
@@ -46,4 +49,6 @@
     Listen
     <span class="glyphicon glyphicon-volume-up"></span>
   </div>
+
+  <button (click)="onChordSelectionComplete(true)" class="btn btn-default">NEXT</button>
 </div>

@@ -21,12 +21,19 @@ export class AppComponent implements OnInit {
 
   selectedChords: Chord[] = [];
 
+  scaleSelectionComplete = false;
+
+  chordSelectionComplete = false;
+
   constructor(
     private chordProgGeneratorService: ChordProgGeneratorService,
     private scaleDataService: ScaleDataService
     ) { }
 
   public ngOnInit() {
+  }
+
+  getAllScales() {
     this.scaleDataService
       .getAllScales()
       .subscribe(
@@ -34,7 +41,6 @@ export class AppComponent implements OnInit {
           this.listOfScales = scales;
         }
       );
-
   }
 
   playFile(fileUrl: string) {
@@ -81,6 +87,17 @@ export class AppComponent implements OnInit {
     this.selectedChords = this.selectedChords.filter(
       chord => chord.id !== id
     );
+  }
+
+  onScaleSelectionComplete(status: boolean) {
+    this.scaleSelectionComplete = status;
+
+    if (!status)
+      this.selectedChords = [];
+  }
+
+  onChordSelectionComplete(status: boolean) {
+    this.chordSelectionComplete = status;
   }
 
 }

@@ -1,11 +1,12 @@
 <div class="scaleSelector">
-  <p>
+  <h1>
 
     Select a scale
 
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
-  </p>
+  </h1>
   <select (change)="onScaleChange($event)" id="scaleSelectDropdown" [(ngModel)]="selectedScale">
+  <!--<select id="scaleSelectDropdown" [(ngModel)]="selectedScale">-->
   <option *ngFor="let s of scales" [ngValue]="s">{{s.name}} {{s.type}}</option>
 </select>
 
@@ -16,6 +17,6 @@
 
       <span class="glyphicon glyphicon-volume-up"></span>
     </button>
-    <button class="btn btn-default" id="scaleNextButton">Next</button>
+    <button *ngIf="selectedScale" class="btn btn-default" id="scaleNextButton" (click)="onScaleSelectionComplete(true)" >Next</button>
   </div>
 </div>
