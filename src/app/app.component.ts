@@ -21,11 +21,10 @@ export class AppComponent implements OnInit {
 
   selectedChords: Chord[] = [];
 
-  title = 'app works';
-
-  constructor(private chordProgGeneratorService: ChordProgGeneratorService,
-              private scaleDataService: ScaleDataService) {
-  }
+  constructor(
+    private chordProgGeneratorService: ChordProgGeneratorService,
+    private scaleDataService: ScaleDataService
+    ) { }
 
   public ngOnInit() {
     this.scaleDataService
@@ -69,27 +68,19 @@ export class AppComponent implements OnInit {
   }
 
   addChord(chord: Chord) {
-    console.log('addChord');
     this.selectedChords.push(chord);
     this.chordProgGeneratorService.addChord(chord);
     return this;
   }
 
   onGenerateMidiFile() {
-    console.log('onGenerateMidiFile');
     return this.chordProgGeneratorService.generateMidiFile();
   }
 
   removeChord(id: number) {
-    console.log('remove chord id: ' + id);
     this.selectedChords = this.selectedChords.filter(
       chord => chord.id !== id
     );
   }
 
-  playChord() {
-    console.log('playChord');
-    return this; 
-  }
-  
 }

@@ -7,6 +7,23 @@
   (playFile)="playFile($event)">
 </app-scale-selector>
 
+<app-chord-selector 
+  *ngIf="listOfChords.length > 0"
+  [chords]="listOfChords"
+  [selectedChords]="selectedChords"
+  (addChord)="addChord($event)"
+  (playFile)="playFile($event)"
+  (removeChord)="removeChord($event)"
+  (playChordProgression)="playChordProgression()"
+>
+</app-chord-selector>
+
+<app-generate-midi
+  *ngIf="selectedChords.length > 0"
+  (generateMidi)="onGenerateMidiFile()"
+>
+</app-generate-midi>
+
 <!--<section class="scaleSelector" *ngIf="listOfScales.length > 0" style="display: none;">
   <p>
 
@@ -28,14 +45,6 @@
     <button class="btn btn-default" id="scaleNextButton">Next</button>
   </div>
 </section>-->
-
-<app-chord-selector 
-  *ngIf="listOfChords.length > 0"
-  [chords]="listOfChords"
-  (addChord)="addChord($event)"
-  (playFile)="playFile($event)"
->
-</app-chord-selector>
 
 <!--<section class="chordSelection" *ngIf="listOfChords.length > 0">
   <p>
@@ -69,14 +78,6 @@
 
 </section>-->
 
-<app-chord-prog-list-footer
-  *ngIf="selectedChords.length > 0"
-  [chords]="selectedChords"
-  (removeChord)="removeChord($event)"
-  (playChordProgression)="playChordProgression()"
->
-</app-chord-prog-list-footer>
-
 <!--<section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">
   <div id="chordProgressionListDiv">
     <span id="chordsSelectedLabel">Chords selected:</span>
@@ -96,12 +97,6 @@
   </div>
 
 </section>-->
-
-<app-generate-midi
-  *ngIf="selectedChords.length > 0"
-  (generateMidi)="onGenerateMidiFile()"
->
-</app-generate-midi>
 
 <!--<section class="generateMidi" *ngIf="selectedChords.length > 0">
   <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">
