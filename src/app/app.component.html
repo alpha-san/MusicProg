@@ -35,8 +35,8 @@
 
 </div>
 
-<div class="container" id="mainSqueeze">
-  <section class="app-info">
+<div id="mainAppDiv">
+  <section class="app-info container">
     <h1>MusicProg</h1>
     <h3>an easy way to learn music theory</h3>
 
@@ -49,27 +49,27 @@
 
   <section class="scaleSelector" *ngIf="listOfScales.length > 0">
     <p>
+
       Select a scale
 
        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
     </p>
-    <select (change)="onScaleChange($event)" id="soflow" [(ngModel)]="selectedScale">
+    <select (change)="onScaleChange($event)" id="scaleSelectDropdown" [(ngModel)]="selectedScale">
       <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}} {{s.type}}</option>
     </select>
 
     <div class="scaleButtonArea" *ngIf="selectedScale">
-    <button (click)="playFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">Listen &nbsp; <span class="glyphicon glyphicon-volume-up
-"></span></button>
+    <button (click)="playFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">
+
+      Listen &nbsp; 
+
+      <span class="glyphicon glyphicon-volume-up"></span>
+    </button>
   <button class="btn btn-default" id="scaleNextButton">Next</button>
     </div>
   </section>
 
   <br />
-
-  <!-- code to play audio file -->
-  <!--
-    <button class="btn btn-default" onclick="playFile('/assets/audio/Cowboy Bebop (Draft 3).mp3')">play chord</button>
-    -->
 
   <section class="chordSelection" *ngIf="listOfChords.length > 0">
     <p>
@@ -77,28 +77,44 @@
        <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
     </p>
 
-    <div class="chordsContainer">
-      <div class="chordDiv col-sm-3" *ngFor="let chord of listOfChords">
-        <label>{{chord.name}} {{chord.type}}</label> <br />
+    <div class="row chordsContainer">
+      <div *ngFor="let chord of listOfChords; let i = index">
+        <div class="clearfix" *ngIf="i % 4 == 0"></div>
+        <div class="chordDiv col-sm-3">
+          <label>{{chord.name}} {{chord.type}}</label> <br />
 
-        <div class="addChordButton" (click)="addChord(chord)">
-           <span class="glyphicon glyphicon-plus"></span>
-        </div> 
+          <div>  
+            <span *ngFor="let note of chord.notes; let isLast=last">
+              {{note[0]}}{{isLast ? '' : ', '}}
+            </span>
+          </div>
 
-        <div class="playChordButton " (click)="playFile(chord.fileUrl)">
-           <span class="glyphicon glyphicon-volume-up"></span>
+          <div class="addChordButton" (click)="addChord(chord)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div> 
+
+          <div class="playChordButton " (click)="playFile(chord.fileUrl)">
+            <span class="glyphicon glyphicon-volume-up"></span>
+          </div>
         </div>
+
       </div>
     </div>
 
   </section>
 
   <section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">
-    <span style="font-weight: bold; font-size: 14pt;">Chords selected:</span>
+    <div id="chordProgressionListDiv">
+      <span style="font-weight: bold; font-size: 14pt;">Chords selected:</span>
 
-    <div class="selectedChord" *ngFor="let chord of selectedChords">
-      <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-      <button (click)="removeChord(chord.id)">x</button> &nbsp;
+      <div class="selectedChord" *ngFor="let chord of selectedChords">
+        <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
+        <button (click)="removeChord(chord.id)">x</button> &nbsp;
+      </div>
+    </div>
+
+    <div id="chordProgressionListenDiv" (click)="playChordProgression()">
+      <span class="glyphicon glyphicon-volume-up"></span>
     </div>
 
   </section>

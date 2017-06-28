@@ -57,6 +57,22 @@ export class AppComponent implements OnInit {
     audio.play();
   }
 
+  playChordProgression() {
+    for (let i: number = 0; i < this.selectedChords.length; i++) {
+      let chord: Chord = this.selectedChords[i];
+      let timeToStartNote: number = i;
+      console.log('i = ' + i);
+      (function(chord, timeToStartNote) {
+        setTimeout(function() {
+          console.log('playChordProgression: ' + timeToStartNote);
+          let audio = new Audio(chord.fileUrl);
+          audio.load();
+          audio.play();
+        }, timeToStartNote);
+      })(chord)
+    }
+  }
+
   onScaleChange(scale: EventEmitter<Scale>) {
     this.scaleDataService
       .getChordsBasedOnScaleId(this.selectedScale.id)
