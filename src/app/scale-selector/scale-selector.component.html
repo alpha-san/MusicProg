@@ -1,0 +1,21 @@
+<div class="scaleSelector">
+  <p>
+
+    Select a scale
+
+    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
+  </p>
+  <select (change)="onScaleChange($event)" id="scaleSelectDropdown" [(ngModel)]="selectedScale">
+  <option *ngFor="let s of scales" [ngValue]="s">{{s.name}} {{s.type}}</option>
+</select>
+
+  <div class="scaleButtonArea" *ngIf="selectedScale">
+    <button (click)="onPlayFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">
+
+      Listen &nbsp; 
+
+      <span class="glyphicon glyphicon-volume-up"></span>
+    </button>
+    <button class="btn btn-default" id="scaleNextButton">Next</button>
+  </div>
+</div>

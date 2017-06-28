@@ -1,0 +1,30 @@
+<div class="chordSelection">
+  <p>
+    Select a few chords
+    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
+  </p>
+
+  <div class="row chordsContainer">
+    <div *ngFor="let chord of chords; let i = index">
+      <div class="clearfix" *ngIf="i % 4 == 0"></div>
+      <div class="chordDiv col-sm-3">
+        <label>{{chord.name}} {{chord.type}}</label> <br />
+
+        <div>
+          <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
+              {{note[0]}}{{isLast ? '' : ', '}}
+            </span>
+        </div>
+
+        <div class="addChordButton" (click)="onAddChord(chord)">
+          <span class="glyphicon glyphicon-plus"></span>
+        </div>
+
+        <div class="playChordButton " (click)="onPlayFile(chord.fileUrl)">
+          <span class="glyphicon glyphicon-volume-up"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

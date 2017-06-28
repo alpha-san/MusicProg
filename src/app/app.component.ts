@@ -15,8 +15,6 @@ import { Scale } from './scale';
 })
 export class AppComponent implements OnInit {
 
-  selectedScale: Scale;
-
   listOfScales: Scale[] = [];
 
   listOfChords: Chord[] = [];
@@ -38,17 +36,6 @@ export class AppComponent implements OnInit {
         }
       );
 
-/*
-    if (!this.selectedScale)
-      this.selectedScale = new Scale({ name: 'C', type: 'Major' });
-
-    this.scaleDataService
-      .getChordsBasedOnScaleId(this.selectedScale.id)
-      .subscribe(
-        (chords) => {
-          this.listOfChords = chords;
-        }
-      );*/
   }
 
   playFile(fileUrl: string) {
@@ -71,9 +58,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  onScaleChange(scale: EventEmitter<Scale>) {
+  onScaleChange(scale: Scale) {
     this.scaleDataService
-      .getChordsBasedOnScaleId(this.selectedScale.id)
+      .getChordsBasedOnScaleId(scale.id)
       .subscribe(
         (chords) => {
           this.listOfChords = chords;
