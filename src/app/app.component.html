@@ -1,7 +1,12 @@
 <app-info
-  (getStarted)="getAllScales()"
+  (createASong)="goToSongPage()"
 >
 </app-info>
+
+<app-song-creator
+  *ngIf="selectedGoToSongPage"
+>
+</app-song-creator>
 
 <app-scale-selector 
   *ngIf="listOfScales.length > 0"

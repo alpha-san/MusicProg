@@ -1,0 +1,33 @@
+<input [(ngModel)]="song.name" placeholder="Song Name" autofocus="">
+
+<label>Scale</label> <span *ngIf="song.scale">{{selectedScale.name}} {{selectedScale.type}} </span>
+
+  <button class="btn btn-default" (click)="showScaleSelection()">Add Scale</button>
+
+  <input [(ngModel)]="song.bpm" type="number" placeholder="BPM">
+
+  <div class="chordSectionDiv">
+    <label>Chords List: </label>
+    <a *ngIf="song.scale" (click)="showChordSelection()">edit</a>
+
+    <div class="chordsListDiv">
+      <div class="chordDiv" *ngFor="let chord of song.chords">
+        <span class="glyphicon glyphicon-music"></span>
+
+        <span class="chordName">{{chord.name}}</span>
+
+        <div class="chordNotes">
+          <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">{{note[0]}}{{isLast ? '' : ', '}}</span>
+        </div>
+      </div>
+
+      <span class="glyphicon glyphicon-pencil" onclick="editChordLengthPopup()"></span>
+    </div>
+  </div>
+
+  <div class="songFooter">
+    <button class="btn btn-default" (click)="playChordProgression()">
+    <span class="glyphicon glyphicon-play"></span>
+  </button>
+    <button (click)="generateMidi()">Generate Midi</button>
+  </div>

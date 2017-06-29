@@ -6,6 +6,7 @@ export class Chord {
     id: number;
     name: string;
     type: string;
+    length: number;
     notes: Array<string>;
     fileUrl: string;
     belongsToScaleId: Array<number>;

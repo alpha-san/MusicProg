@@ -10,6 +10,7 @@ import { ScaleSelectorComponent } from './scale-selector/scale-selector.componen
 import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
 import { GenerateMidiComponent } from './generate-midi/generate-midi.component';
 import { InfoComponent } from './info/info.component';
+import { SongCreatorComponent } from './song-creator/song-creator.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { InfoComponent } from './info/info.component';
     ScaleSelectorComponent,
     ChordSelectorComponent,
     GenerateMidiComponent,
-    InfoComponent
+    InfoComponent,
+    SongCreatorComponent
   ],
   imports: [
     BrowserModule,

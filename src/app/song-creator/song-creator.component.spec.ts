@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { ScaleSelectorComponent } from './scale-selector.component';
+import { SongCreatorComponent } from './song-creator.component';
 
-describe('ScaleSelectorComponent', () => {
-  let component: ScaleSelectorComponent;
-  let fixture: ComponentFixture<ScaleSelectorComponent>;
+describe('SongCreatorComponent', () => {
+  let component: SongCreatorComponent;
+  let fixture: ComponentFixture<SongCreatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule ],
-      declarations: [ ScaleSelectorComponent ]
+      declarations: [ SongCreatorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScaleSelectorComponent);
+    fixture = TestBed.createComponent(SongCreatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

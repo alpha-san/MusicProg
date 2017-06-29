@@ -8,15 +8,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class InfoComponent implements OnInit {
 
   @Output()
-  getStarted: EventEmitter<string> = new EventEmitter();
+  createASong: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onGetStarted() {
-    this.getStarted.emit();
+  onCreateASong() {
+    this.createASong.emit();
   }
 
 }

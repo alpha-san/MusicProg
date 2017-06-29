@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
 
   selectedChords: Chord[] = [];
 
+  selectedGoToSongPage = false;
+
   scaleSelectionComplete = false;
 
   chordSelectionComplete = false;
@@ -31,6 +33,10 @@ export class AppComponent implements OnInit {
     ) { }
 
   public ngOnInit() {
+  }
+
+  goToSongPage() {
+    this.selectedGoToSongPage = true;
   }
 
   getAllScales() {
