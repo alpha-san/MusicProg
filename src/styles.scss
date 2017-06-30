@@ -2,12 +2,34 @@
  * MusicProg Style Sheet
  * Global Variables
  */
+
 $primary-font: 'Open Sans', sans-serif;
 $primary-bg-color: #333;
 $primary-font-color: #fff;
 
+/* START
+ * Cover Essentials
+ */
+ html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  text-align: center;
+  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+}
+/* END
+ * Cover Essentials
+ */
+
 * {
   font-family: $primary-font;
+}
+
+input, button {
+  width: 100%;  
+  font-size: 18pt;
 }
 
 .selectedChord {
@@ -147,7 +169,7 @@ app-song-creator {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #fff;
+  background-color: $primary-bg-color;
 }
 
 app-song-creator {
@@ -168,148 +190,3 @@ app-chord-selector {
 app-generate-midi {
   z-index: 3;
 }
-
-/*
- * START
- * Bootstrap Cover Styles
- */
-
-a,
-a:focus,
-a:hover {
-  color: $primary-font-color;
-}
-
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
-}
-
-html,
-body {
-  height: 100%;
-  background-color: #333;
-}
-body {
-  color: $primary-font-color;
-  text-align: center;
-  text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
-}
-
-.site-wrapper {
-  display: table;
-  width: 100%;
-  height: 100%; /* For at least Firefox */
-  min-height: 100%;
-  -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
-          box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
-        background-image: url(https://musicprog.blob.core.windows.net/images/DSC01886.jpg);
-    height: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-.site-wrapper-inner {
-  display: table-cell;
-  vertical-align: top;
-}
-.cover-container {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.inner {
-  padding: 2rem;
-}
-
-.masthead {
-  margin-bottom: 2rem;
-  z-index: 10;
-}
-
-.masthead-brand {
-  margin-bottom: 0;
-}
-
-.nav-masthead .nav-link {
-  padding: .25rem 0;
-  font-weight: bold;
-  color: rgba(255,255,255,.5);
-  background-color: transparent;
-  border-bottom: .25rem solid transparent;
-}
-
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255,255,255,.25);
-}
-
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
-}
-
-.nav-masthead .active {
-  color: $primary-font-color;
-  border-bottom-color: $primary-font-color;
-}
-
-@media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
-}
-
-.cover {
-  padding: 0 1.5rem;
-}
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: bold;
-}
-
-.mastfoot {
-  color: rgba(255,255,255,.5);
-}
-
-@media (min-width: 40em) {
-  /* Pull out the header and footer */
-  .masthead {
-    position: fixed;
-    top: 0;
-  }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
-  /* Handle the widths */
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 100%; /* Must be percentage or pixels for horizontal alignment */
-  }
-}
-
-/*@media (min-width: 62em) {
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 42rem;
-  }
-}*/
-
-/*
- * END
- * Bootstrap Cover Styles
- */
