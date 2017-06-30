@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 
 import { SongCreatorComponent } from './song-creator.component';
 
+import { Song } from '../song';
+
 describe('SongCreatorComponent', () => {
   let component: SongCreatorComponent;
   let fixture: ComponentFixture<SongCreatorComponent>;

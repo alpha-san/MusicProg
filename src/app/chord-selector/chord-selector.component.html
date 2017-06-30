@@ -37,9 +37,9 @@
     <span id="chordsSelectedLabel">Chords selected:</span>
 
     <div id="selectedChordListDiv">
-      <div class="selectedChord" *ngFor="let chord of selectedChords">
+      <div class="selectedChord" *ngFor="let chord of selectedChords; let i = index">
         <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-        <button (click)="onRemoveChord(chord.id)">x</button> &nbsp;
+        <button (click)="onRemoveChord(i)">x</button> &nbsp;
       </div>
     </div>
 

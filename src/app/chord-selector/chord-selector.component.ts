@@ -35,13 +35,13 @@ export class ChordSelectorComponent implements OnInit {
   onAddChord(chord: Chord) {
     this.addChord.emit(chord);
   }
-
+  
   onPlayFile(fileUrl) {
     this.playFile.emit(fileUrl);
   }
 
-  onRemoveChord(id: number) {
-    this.removeChord.emit(id);
+  onRemoveChord(index: number) {
+    this.removeChord.emit(index);
   }
 
   onPlayChordProgression() {

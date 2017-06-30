@@ -26,6 +26,8 @@
     "json-server": "^0.10.1",
     "midi-writer-js": "^1.4.7",
     "rxjs": "^5.1.0",
+    "tonal": "^0.69.6",
+    "tone": "^0.10.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

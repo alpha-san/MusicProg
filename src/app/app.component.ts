@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { ScaleDataService } from './scale-data.service';
+import { ToneAudioService } from './tone-audio.service';
 import { Song } from './song';
 import { Scale } from './scale';
 import { Chord } from './chord';
@@ -11,7 +12,8 @@ import { Chord } from './chord';
   styleUrls: ['./app.component.scss'],
   providers: [
     ChordProgGeneratorService,
-    ScaleDataService
+    ScaleDataService,
+    ToneAudioService
   ]
 })
 export class AppComponent implements OnInit {
@@ -31,7 +33,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private chordProgGeneratorService: ChordProgGeneratorService,
-    private scaleDataService: ScaleDataService
+    private scaleDataService: ScaleDataService,
+    private toneAudioService: ToneAudioService
     ) { }
 
   public ngOnInit() {
@@ -62,16 +65,20 @@ export class AppComponent implements OnInit {
     return this;
   }
 
-  removeChord(id: number) {
-    this.song.chords = this.song.chords.filter(
-      chord => chord.id !== id
-    );
+  removeChord(index: number) {
+    if (index !== -1)
+      this.song.chords.splice(index, 1)
+    /*this.song.chords = this.song.chords.filter(
+      chord => chord.id !== index
+    );*/
   }
 
   playFile(fileUrl: string) {
-    var audio = new Audio(fileUrl);
-    audio.load();
-    audio.play();
+    this.toneAudioService.playScale(new Scale());
+
+    //var audio = new Audio(fileUrl);
+    //audio.load();
+    //audio.play();
   }
 
   playChordProgression() {

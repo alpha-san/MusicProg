@@ -24,7 +24,7 @@
 <app-chord-selector 
   *ngIf="redirectToChordsComponent"
   [chords]="listOfChords"
-  [selectedChords]="selectedChords"
+  [selectedChords]="song.chords"
   (addChord)="addChord($event)"
   (playFile)="playFile($event)"
   (removeChord)="removeChord($event)"

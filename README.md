@@ -2,7 +2,7 @@
 
 An easy way to learn music theory by creating chord progressions.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.3 and [MidiWriterJS](https://github.com/grimmdude/MidiWriterJS).
+This project was generated with [Angular](https://github.com/angular), [Tonal](https://github.com/danigb/tonal), [Tone.js](https://github.com/Tonejs/Tone.js), and [MidiWriterJS](https://github.com/grimmdude/MidiWriterJS).
 
 ## Development server
 
