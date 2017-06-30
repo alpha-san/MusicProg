@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Song } from '../song';
 import { Scale } from '../scale';
 import { Chord } from '../chord';
@@ -10,7 +10,26 @@ import { Chord } from '../chord';
 })
 export class SongCreatorComponent implements OnInit {
 
-  song: Song = new Song();
+  // TODO
+  // when loading songs from DB
+  //@Input: song: Song;
+
+  redirectToSongComponent: boolean;
+
+  redirectToScaleComponent: boolean;
+
+  redirectToChordsComponent: boolean;
+
+  @Input() song: Song;
+
+  @Output()
+  onScaleSelect: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  onChordSelect: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  onGenerateMidi: EventEmitter<Song> = new EventEmitter();
 
   constructor() { }
 
@@ -18,15 +37,18 @@ export class SongCreatorComponent implements OnInit {
   } 
 
   showScaleSelection() {
-    console.log('showScaleSelection');
+    this.onScaleSelect.emit();
   }
 
   showChordSelection() {
-    console.log('showChordSelection');
+    this.onChordSelect.emit();
   }
 
   generateMidi() {
-    console.log('generateMidi');
+    this.onGenerateMidi.emit();
   }
+
+
+
 
 }

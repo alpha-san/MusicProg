@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { ScaleDataService } from './scale-data.service';
-import { Chord } from './chord';
+import { Song } from './song';
 import { Scale } from './scale';
+import { Chord } from './chord';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +16,18 @@ import { Scale } from './scale';
 })
 export class AppComponent implements OnInit {
 
+  // For now use new song until we store in DB
+  song: Song = new Song();
+
   listOfScales: Scale[] = [];
 
   listOfChords: Chord[] = [];
 
-  selectedChords: Chord[] = [];
+  redirectToSongComponent: boolean = false;
 
-  selectedGoToSongPage = false;
+  redirectToScaleComponent: boolean = false;
 
-  scaleSelectionComplete = false;
-
-  chordSelectionComplete = false;
+  redirectToChordsComponent: boolean = false;
 
   constructor(
     private chordProgGeneratorService: ChordProgGeneratorService,
@@ -33,13 +35,6 @@ export class AppComponent implements OnInit {
     ) { }
 
   public ngOnInit() {
-  }
-
-  goToSongPage() {
-    this.selectedGoToSongPage = true;
-  }
-
-  getAllScales() {
     this.scaleDataService
       .getAllScales()
       .subscribe(
@@ -49,6 +44,30 @@ export class AppComponent implements OnInit {
       );
   }
 
+  onScaleChange(scale: Scale) {
+    this.song.scale = scale;
+
+    this.scaleDataService
+      .getChordsBasedOnScaleId(scale.id)
+      .subscribe(
+        (chords) => {
+          this.listOfChords = chords;
+        }
+      );
+  }
+
+  addChord(chord: Chord) {
+    this.song.chords.push(chord);
+    this.chordProgGeneratorService.addChord(chord);
+    return this;
+  }
+
+  removeChord(id: number) {
+    this.song.chords = this.song.chords.filter(
+      chord => chord.id !== id
+    );
+  }
+
   playFile(fileUrl: string) {
     var audio = new Audio(fileUrl);
     audio.load();
@@ -56,8 +75,8 @@ export class AppComponent implements OnInit {
   }
 
   playChordProgression() {
-    for (let i: number = 0; i < this.selectedChords.length; i++) {
-      let chord: Chord = this.selectedChords[i];
+    for (let i: number = 0; i < this.song.chords.length; i++) {
+      let chord: Chord = this.song.chords[i];
       let timeToStartNote: number = i * 1000;
 
       setTimeout(function() {
@@ -69,41 +88,32 @@ export class AppComponent implements OnInit {
     }
   }
 
-  onScaleChange(scale: Scale) {
-    this.scaleDataService
-      .getChordsBasedOnScaleId(scale.id)
-      .subscribe(
-        (chords) => {
-          this.listOfChords = chords;
-        }
-      );
-  }
-
-  addChord(chord: Chord) {
-    this.selectedChords.push(chord);
-    this.chordProgGeneratorService.addChord(chord);
-    return this;
-  }
-
   onGenerateMidiFile() {
     return this.chordProgGeneratorService.generateMidiFile();
   }
 
-  removeChord(id: number) {
-    this.selectedChords = this.selectedChords.filter(
-      chord => chord.id !== id
-    );
+  goToSongPage() {
+    this.redirectToSongComponent = true;
+
+    this.redirectToScaleComponent = false;
+    this.redirectToChordsComponent = false;
   }
 
-  onScaleSelectionComplete(status: boolean) {
-    this.scaleSelectionComplete = status;
+  goToScaleSelectionPage() {
+    this.redirectToScaleComponent = true;
+
+    this.redirectToSongComponent = false;
+    this.redirectToChordsComponent = false;
 
     if (!status)
-      this.selectedChords = [];
+      this.song.chords = [];
   }
 
-  onChordSelectionComplete(status: boolean) {
-    this.chordSelectionComplete = status;
+  goToChordsSelectionPage() {
+    this.redirectToChordsComponent = true;
+
+    this.redirectToScaleComponent = false;
+    this.redirectToSongComponent = false;
   }
 
 }

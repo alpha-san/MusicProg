@@ -4,37 +4,41 @@
 </app-info>
 
 <app-song-creator
-  *ngIf="selectedGoToSongPage"
+  *ngIf="redirectToSongComponent"
+  [song]="song"
+  (onScaleSelect)="goToScaleSelectionPage()"
+  (onChordSelect)="goToChordsSelectionPage()"
+  (onGenerateMidi)="onGenerateMidiFile()"
 >
 </app-song-creator>
 
 <app-scale-selector 
-  *ngIf="listOfScales.length > 0"
+  *ngIf="redirectToScaleComponent"
   [scales]="listOfScales" 
   (selectScale)="onScaleChange($event)"
   (playFile)="playFile($event)"
-  (scaleSelectionComplete)="onScaleSelectionComplete($event)"
+  (scaleSelectionComplete)="goToSongPage()"
   >
 </app-scale-selector>
 
 <app-chord-selector 
-  *ngIf="scaleSelectionComplete"
+  *ngIf="redirectToChordsComponent"
   [chords]="listOfChords"
   [selectedChords]="selectedChords"
   (addChord)="addChord($event)"
   (playFile)="playFile($event)"
   (removeChord)="removeChord($event)"
   (playChordProgression)="playChordProgression()"
-  (chordSelectionComplete)="onChordSelectionComplete($event)"
-  (backButtonPress)="onScaleSelectionComplete(false)"
+  (chordSelectionComplete)="goToSongPage()"
 >
 </app-chord-selector>
 
-<app-generate-midi
+<!--<app-generate-midi
   *ngIf="chordSelectionComplete"
   (generateMidi)="onGenerateMidiFile()"
 >
-</app-generate-midi>
+</app-generate-midi>-->
+
 
 <!--<section class="scaleSelector" *ngIf="listOfScales.length > 0" style="display: none;">
   <p>

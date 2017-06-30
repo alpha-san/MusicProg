@@ -22,13 +22,10 @@ export class ChordSelectorComponent implements OnInit {
   removeChord: EventEmitter<number> = new EventEmitter();
 
   @Output()
-  playChordProgression: EventEmitter<Chord> = new EventEmitter();
+  playChordProgression: EventEmitter<any> = new EventEmitter();
 
   @Output()
   chordSelectionComplete: EventEmitter<any> = new EventEmitter();
-
-  @Output()
-  backButtonPress: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -51,12 +48,8 @@ export class ChordSelectorComponent implements OnInit {
     this.playChordProgression.emit();
   }
 
-  onChordSelectionComplete(status: boolean) {
-    this.chordSelectionComplete.emit(status);
-  }
-
-  onBackButtonPress() {
-    this.backButtonPress.emit();
+  onChordSelectionComplete() {
+    this.chordSelectionComplete.emit();
   }
 
 }
