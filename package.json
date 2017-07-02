@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "json-server": "json-server --watch db.json",
-    "deploy": "ng build --prod --base-href 'https://github.com/alpha-san/musicprog/' ngh"
+    "deploy": "ng build --prod --base-href 'https://github.com/alpha-san/musicprog/' && angular-cli-ghpages --branch master"
   },
   "private": true,
   "dependencies": {
