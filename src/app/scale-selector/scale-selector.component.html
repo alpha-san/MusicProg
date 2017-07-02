@@ -6,13 +6,16 @@
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
   </h1>
   <select (change)="onNoteChange($event)" id="noteSelectDropdown" [(ngModel)]="selectedNote">
-    <!--<select id="scaleSelectDropdown" [(ngModel)]="selectedScale">-->
     <option *ngFor="let note of notes" [ngValue]="note">{{note}}</option>
   </select>
 
   <select (change)="onTypeChange($event)" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
     <option *ngFor="let type of types" [ngValue]="type" >{{type}}</option>
   </select>
+
+  <div *ngIf="selectedScale">
+    <span *ngFor="let note of selectedScale.notes">{{note.slice(0, -1)}}</span>
+  </div>
 
   <div class="scaleButtonArea" *ngIf="selectedNote && selectedType">
     <button (click)="onPlayScale()" class="btn btn-default" id="scaleHearButton">

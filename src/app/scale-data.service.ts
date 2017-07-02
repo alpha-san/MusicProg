@@ -15,16 +15,16 @@ import tonal from 'tonal';
 @Injectable()
 export class ScaleDataService {
 
-  notes: String[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+  notes: string[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
 
   // M = Major (triad)
   // m = minor (triad)
   // Maj7 = Major (seventh)
   // m7 = minor (seventh)
   // 7 = secondary dominate
-  chordNames: String[] = [ 'M', 'm', 'Maj7', 'm7', '7' ];
+  chordNames: string[] = [ 'M', 'm', 'Maj7', 'm7', '7' ];
 
-  scaleNames: String[] = [ 'major', 'minor', 'lydian', 'chromatic', 'dorian', 'major blues', 'minor blues' ];
+  scaleNames: string[] = [ 'major', 'minor', 'lydian', 'chromatic', 'dorian', 'major blues', 'minor blues' ];
 
   constructor(
     private api: ApiService
@@ -44,7 +44,7 @@ export class ScaleDataService {
 
   }
 
-  getAllScaleNames(): String[] {
+  getAllScaleNames(): string[] {
     return this.scaleNames;
     //return tonal.scale.names();
   }
@@ -103,7 +103,7 @@ export class ScaleDataService {
 
         // note[0] is the note without the pitch
         let properNote = note[0];
-        let notes: String[] = tonal.chord(properNote+ ' ' + name);
+        let notes: string[] = tonal.chord(properNote+ ' ' + name);
         let midiNotes = this.getMidiNotes(notes);
 
         let chordsIndex = 0;
@@ -167,8 +167,8 @@ export class ScaleDataService {
 
   // [ 'C', 'D', 'E', 'F', 'G', 'A', 'B' ]
   // newIndex < baseNoteIndex >= scale.length
-  getMidiNotes(notes: String[]): String[] {
-    let result: String[] = [];
+  getMidiNotes(notes: string[]): string[] {
+    let result: string[] = [];
 
     let baseNoteIndex = this.notes.indexOf(notes[0].toString());
 

@@ -6,16 +6,21 @@
 <app-song-creator
   *ngIf="redirectToSongComponent"
   [song]="song"
+  [midiFileUrl]="midiFile"
   (onScaleSelect)="goToScaleSelectionPage()"
   (onChordSelect)="goToChordsSelectionPage()"
   (onGenerateMidi)="onGenerateMidiFile()"
+  (onPlayChordProgression)="playChordProgression()"
 >
 </app-song-creator>
 
+  <!--[selectedNote]="(song.scale) ? song.scale.name : ''"
+  [selectedType]="(song.scale) ? song.scale.type : ''"-->
 <app-scale-selector 
   *ngIf="redirectToScaleComponent"
   [notes]="listOfNotes" 
   [types]="listOfScaleTypes"
+  [selectedScale]="song.scale"
   (selectScale)="onScaleChange($event)"
   (playScale)="playScale($event)"
   (scaleSelectionComplete)="goToSongPage()"
@@ -33,90 +38,3 @@
   (chordSelectionComplete)="goToSongPage()"
 >
 </app-chord-selector>
-
-<!--<app-generate-midi
-  *ngIf="chordSelectionComplete"
-  (generateMidi)="onGenerateMidiFile()"
->
-</app-generate-midi>-->
-
-
-<!--<section class="scaleSelector" *ngIf="listOfScales.length > 0" style="display: none;">
-  <p>
-
-    Select a scale
-
-    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
-  </p>
-  <select (change)="onScaleChange($event)" id="scaleSelectDropdown" [(ngModel)]="selectedScale">
-      <option *ngFor="let s of listOfScales" [ngValue]="s">{{s.name}} {{s.type}}</option>
-    </select>
-
-  <div class="scaleButtonArea" *ngIf="selectedScale">
-    <button (click)="playFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">
-
-      Listen &nbsp; 
-
-      <span class="glyphicon glyphicon-volume-up"></span>
-    </button>
-    <button class="btn btn-default" id="scaleNextButton">Next</button>
-  </div>
-</section>-->
-
-<!--<section class="chordSelection" *ngIf="listOfChords.length > 0">
-  <p>
-    Select a few chords
-    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
-  </p>
-
-  <div class="row chordsContainer">
-    <div *ngFor="let chord of listOfChords; let i = index">
-      <div class="clearfix" *ngIf="i % 4 == 0"></div>
-      <div class="chordDiv col-sm-3">
-        <label>{{chord.name}} {{chord.type}}</label> <br />
-
-        <div>
-          <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
-              {{note[0]}}{{isLast ? '' : ', '}}
-            </span>
-        </div>
-
-        <div class="addChordButton" (click)="addChord(chord)">
-          <span class="glyphicon glyphicon-plus"></span>
-        </div>
-
-        <div class="playChordButton " (click)="playFile(chord.fileUrl)">
-          <span class="glyphicon glyphicon-volume-up"></span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</section>-->
-
-<!--<section class="chordProgressionListFooter" *ngIf="selectedChords.length > 0">
-  <div id="chordProgressionListDiv">
-    <span id="chordsSelectedLabel">Chords selected:</span>
-
-    <div id="selectedChordListDiv">
-      <div class="selectedChord" *ngFor="let chord of selectedChords">
-        <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-        <button (click)="removeChord(chord.id)">x</button> &nbsp;
-      </div>
-    </div>
-
-  </div>
-
-  <div id="chordProgressionListenDiv" (click)="playChordProgression()" class="btn btn-default">
-    Listen
-    <span class="glyphicon glyphicon-volume-up"></span>
-  </div>
-
-</section>-->
-
-<!--<section class="generateMidi" *ngIf="selectedChords.length > 0">
-  <button class="btn btn-default generateMidiButton" id="generateMidiButton" (click)="onGenerateMidiFile()">
-      Generate Midi
-    </button>
-</section>-->

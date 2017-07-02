@@ -8,9 +8,11 @@ import { Scale } from '../scale';
 })
 export class ScaleSelectorComponent implements OnInit {
 
-  selectedNote: String;
+  @Input() selectedNote: string;
 
-  selectedType: String;
+  @Input() selectedType: string;
+
+  @Input() selectedScale: Scale;
 
   @Input() notes: String[];
 
@@ -28,6 +30,8 @@ export class ScaleSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.selectedScale)
+      this.selectedScale = new Scale();
   }
 
   onNoteChange() {

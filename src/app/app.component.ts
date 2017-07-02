@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
+import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { ScaleDataService } from './scale-data.service';
 import { ToneAudioService } from './tone-audio.service';
@@ -19,12 +20,15 @@ import { Chord } from './chord';
 })
 export class AppComponent implements OnInit {
 
+  midiFile: SafeUrl;
+
   // For now use new song until we store in DB
-  song: Song = new Song();
+  // default bpm is 120
+  song: Song = new Song({ bpm: 120 });
 
-  listOfNotes: String[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+  listOfNotes: string[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
 
-  listOfScaleTypes: String[];
+  listOfScaleTypes: string[];
 
   listOfChords: Array<Chord[]> = [];
 
@@ -37,7 +41,8 @@ export class AppComponent implements OnInit {
   constructor(
     private chordProgGeneratorService: ChordProgGeneratorService,
     private scaleDataService: ScaleDataService,
-    private toneAudioService: ToneAudioService
+    private toneAudioService: ToneAudioService,
+    private sanitizer: DomSanitizer
     ) { }
 
   public ngOnInit() {
@@ -57,6 +62,7 @@ export class AppComponent implements OnInit {
     this.song.scale = this.scaleDataService.getScaleFromName(scaleName);
 
     this.listOfChords = this.scaleDataService.getChordsBasedOnScale(this.song.scale);
+
     /*(this.scaleDataService
       .getChordsBasedOnScaleId(scale.id)
       .subscribe(
@@ -74,10 +80,7 @@ export class AppComponent implements OnInit {
 
   removeChord(index: number) {
     if (index !== -1)
-      this.song.chords.splice(index, 1)
-    /*this.song.chords = this.song.chords.filter(
-      chord => chord.id !== index
-    );*/
+      this.song.chords.splice(index, 1);
   }
 
   playScale(scaleName: string) {
@@ -90,31 +93,25 @@ export class AppComponent implements OnInit {
 
   playFile(fileUrl: string) {
     this.toneAudioService.playScale(new Scale());
-
-    //var audio = new Audio(fileUrl);
-    //audio.load();
-    //audio.play();
   }
 
   playChordProgression() {
-    /*
-    for (let i: number = 0; i < this.song.chords.length; i++) {
-      let chord: Chord = this.song.chords[i];
-      let timeToStartNote: number = i * 1000;
-
-      setTimeout(function() {
-        let audio = new Audio(chord.fileUrl);
-        audio.load();
-        audio.play();
-      }, timeToStartNote);
-
-    }*/
-
     this.toneAudioService.playChordProgression(this.song.chords);
   }
 
   onGenerateMidiFile() {
-    return this.chordProgGeneratorService.generateMidiFile();
+    this.midiFile = this.sanitize(this.chordProgGeneratorService.generateMidiFile());
+  }
+
+  sanitize(url:string){
+    //return this.sanitizer.bypassSecurityTrustUrl(url);
+
+    // XSS risks
+    console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
+    console.log(this.sanitizer.bypassSecurityTrustUrl(url));
+    console.log(this.sanitizer.bypassSecurityTrustStyle(url));
+
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   goToSongPage() {

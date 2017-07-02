@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { Song } from '../song';
 import { Scale } from '../scale';
 import { Chord } from '../chord';
@@ -22,6 +22,8 @@ export class SongCreatorComponent implements OnInit {
 
   @Input() song: Song;
 
+  @Input() midiFileUrl: string;
+
   @Output()
   onScaleSelect: EventEmitter<any> = new EventEmitter();
 
@@ -31,10 +33,23 @@ export class SongCreatorComponent implements OnInit {
   @Output()
   onGenerateMidi: EventEmitter<Song> = new EventEmitter();
 
-  constructor() { }
+  @Output()
+  onPlayChordProgression: EventEmitter<any> = new EventEmitter();
+
+  constructor(private elRef: ElementRef) { }
 
   ngOnInit() {
-  } 
+  }
+
+  /*
+  ngAfterViewInit() {
+    var div = this.elRef.nativeElement.querySelector('.songFooter');
+    console.log(div);
+  }
+  ngAfterContentInit() {
+    var div = this.elRef.nativeElement.querySelector('.songFooter');
+    console.log(div);
+  }*/
 
   showScaleSelection() {
     this.onScaleSelect.emit();
@@ -46,6 +61,11 @@ export class SongCreatorComponent implements OnInit {
 
   generateMidi() {
     this.onGenerateMidi.emit();
+    this.elRef.nativeElement.querySelector('#downloadMidiLink').click();
+  }
+
+  playChordProgression() {
+    this.onPlayChordProgression.emit();
   }
 
 

@@ -8,7 +8,6 @@ import { ChordProgGeneratorService } from './chord-prog-generator.service';
 import { ApiService } from './api.service';
 import { ScaleSelectorComponent } from './scale-selector/scale-selector.component';
 import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
-import { GenerateMidiComponent } from './generate-midi/generate-midi.component';
 import { InfoComponent } from './info/info.component';
 import { SongCreatorComponent } from './song-creator/song-creator.component';
 
@@ -17,7 +16,6 @@ import { SongCreatorComponent } from './song-creator/song-creator.component';
     AppComponent,
     ScaleSelectorComponent,
     ChordSelectorComponent,
-    GenerateMidiComponent,
     InfoComponent,
     SongCreatorComponent
   ],

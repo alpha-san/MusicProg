@@ -45,7 +45,6 @@ export class ChordProgGeneratorService {
 
     let write = new Writer([this.track]);
     let data = write.dataUri();
-    console.log(data);
 
     return data;
 

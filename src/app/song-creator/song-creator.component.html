@@ -3,7 +3,7 @@
 
 <br />
 
-<label class="songCreatorLabel">Scale:</label> <span class="songCreatorSpan"> {{song.scale ? song.scale.name  : 'n/a'}} </span>
+<label class="songCreatorLabel">Scale:</label> <span class="songCreatorSpan"> {{song.scale ? song.scale.name + ' ' + song.scale.type  : 'n/a'}} </span>
 
   <button class="btn btn-default" (click)="showScaleSelection()">Add Scale</button>
 
@@ -27,7 +27,8 @@
         </div>
       </div>
 
-      <span class="glyphicon glyphicon-pencil songCreatorSpan" onclick="editChordLengthPopup()"></span>
+      <!-- TODO add option once Tone.js Transport is working -->
+      <!--<span class="glyphicon glyphicon-pencil songCreatorSpan" onclick="editChordLengthPopup()"></span>-->
     </div>
   </div>
 
@@ -36,5 +37,6 @@
     <span class="glyphicon glyphicon-play songCreatorSpan"></span>
   </button>
     <button (click)="generateMidi()">Generate Midi</button>
+    <a id="downloadMidiLink" style="display: none;" download="{{(song.name) ? (song.name + '.mid') : 'mysong.mid'}}" [href]="midiFileUrl" target="_blank" #downloadMidiLink>DOWNLOAD MIDI</a>
   </div>
 
