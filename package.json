@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "json-server": "json-server --watch db.json"
+    "json-server": "json-server --watch db.json",
+    "deploy": "ng build --prod --base-href 'https://github.com/alpha-san/musicprog/' ngh"
   },
   "private": true,
   "dependencies": {

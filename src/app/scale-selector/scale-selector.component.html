@@ -5,11 +5,13 @@
 
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
   </h1>
-  <select (change)="onNoteChange($event)" id="noteSelectDropdown" [(ngModel)]="selectedNote">
+  <select (change)="onNoteChange()" id="noteSelectDropdown" [(ngModel)]="selectedNote">
     <option *ngFor="let note of notes" [ngValue]="note">{{note}}</option>
   </select>
 
-  <select (change)="onTypeChange($event)" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
+
+  <!--<select (change)="onTypeChange($event)" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">-->
+  <select (change)="onTypeChange()" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
     <option *ngFor="let type of types" [ngValue]="type" >{{type}}</option>
   </select>
 
