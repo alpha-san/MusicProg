@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   listOfScaleTypes: String[];
 
-  listOfChords: Chord[] = [];
+  listOfChords: Array<Chord[]> = [];
 
   redirectToSongComponent: boolean = false;
 
@@ -84,6 +84,10 @@ export class AppComponent implements OnInit {
     this.toneAudioService.playScale(this.song.scale);
   }
 
+  playChord(chord: Chord) {
+    this.toneAudioService.playChord(chord);
+  }
+
   playFile(fileUrl: string) {
     this.toneAudioService.playScale(new Scale());
 
@@ -93,6 +97,7 @@ export class AppComponent implements OnInit {
   }
 
   playChordProgression() {
+    /*
     for (let i: number = 0; i < this.song.chords.length; i++) {
       let chord: Chord = this.song.chords[i];
       let timeToStartNote: number = i * 1000;
@@ -103,7 +108,9 @@ export class AppComponent implements OnInit {
         audio.play();
       }, timeToStartNote);
 
-    }
+    }*/
+
+    this.toneAudioService.playChordProgression(this.song.chords);
   }
 
   onGenerateMidiFile() {

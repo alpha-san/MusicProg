@@ -16,7 +16,7 @@ export class ChordSelectorComponent implements OnInit {
   addChord: EventEmitter<Chord> = new EventEmitter();
 
   @Output()
-  playFile: EventEmitter<String> = new EventEmitter();
+  playChord: EventEmitter<Chord> = new EventEmitter();
 
   @Output()
   removeChord: EventEmitter<number> = new EventEmitter();
@@ -36,8 +36,8 @@ export class ChordSelectorComponent implements OnInit {
     this.addChord.emit(chord);
   }
   
-  onPlayFile(fileUrl) {
-    this.playFile.emit(fileUrl);
+  onPlayChord(chord: Chord) {
+    this.playChord.emit(chord);
   }
 
   onRemoveChord(index: number) {

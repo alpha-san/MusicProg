@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Tone, Synth, PolySynth, Transport, Sequence, Now } from 'tone';
+import { Tone, Synth, PolySynth, Transport, Sequence, Now, Event, Part } from 'tone';
 
 import { Scale } from './scale';
 import { Chord } from './chord';
@@ -32,8 +32,6 @@ export class ToneAudioService {
     Transport.stop();
     Transport.cancel(0);
 
-    console.log('playScale notes:');
-
     let synth = new Synth().toMaster();
     let myScale = scale.notes;
 
@@ -51,6 +49,30 @@ export class ToneAudioService {
     //seq.loop = 0;
     this.sequence.start(0);
     this.sequence.stop("2m");
+
+    var tempo = 120;
+    Transport.bpm.value = tempo
+    synth.volume.value = -15;
+    Transport.start("+0.1");
+
+  }
+
+  playChordProgression(chords: Chord[]) {
+    Transport.stop();
+    Transport.cancel(0);
+
+    let events = [];
+
+    for(let i = 0; i < chords.length; i++) {
+      events.push({time: (i * 2) + 'm', chord: chords[i]});
+    }
+
+    let synth: PolySynth = new PolySynth(4, Synth).toMaster();
+    let part = new Part(function(time, chord){
+	    //the notes given as the second element in the array
+	    //will be passed in as the second argument
+      synth.triggerAttackRelease(chord.notes, "2n");
+    }, events).start(0);
 
     var tempo = 120;
     Transport.bpm.value = tempo

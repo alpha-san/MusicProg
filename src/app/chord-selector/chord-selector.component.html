@@ -7,27 +7,42 @@
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
   </h1>
 
-  <div class="row chordsContainer">
-    <div *ngFor="let chord of chords; let i = index">
-      <div class="clearfix" *ngIf="i % 4 == 0"></div>
-      <div class="chordDiv col-sm-3">
-        <label>{{chord.name}} {{chord.type}}</label> <br />
-
-        <div>
-          <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
-              {{note}}{{isLast ? '' : ', '}}
-            </span>
-        </div>
-
-        <div class="addChordButton" (click)="onAddChord(chord)">
-          <span class="glyphicon glyphicon-plus"></span>
-        </div>
-
-        <div class="playChordButton " (click)="onPlayFile(chord.fileUrl)">
-          <span class="glyphicon glyphicon-volume-up"></span>
-        </div>
+  <!-- 
+    M = Major (triad)
+    m = minor (triad)
+    Maj7 = Major (seventh)
+    m7 = minor (seventh)
+    7 = secondary dominate
+  -->
+  <div class="chordsContainer">
+    <div *ngFor="let typeChords of chords">
+      <div class="chordTypeDiv" *ngIf="typeChords.length > 0">
+        {{typeChords[0].type}} Chords
       </div>
 
+      <div class="row">
+      <div *ngFor="let chord of typeChords; let i = index">
+        <div class="clearfix" *ngIf="i % 4 == 0"></div>
+        <div class="chordDiv col-sm-3">
+          <label>{{chord.name}} {{chord.type}}</label> <br />
+
+          <div>
+            <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
+              {{note.slice(0, -1)}}{{isLast ? '' : ', '}}
+            </span>
+          </div>
+
+          <div class="addChordButton" (click)="onAddChord(chord)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </div>
+
+          <div class="playChordButton " (click)="onPlayChord(chord)">
+            <span class="glyphicon glyphicon-volume-up"></span>
+          </div>
+        </div>
+
+      </div>
+      </div>
     </div>
   </div>
 </div>

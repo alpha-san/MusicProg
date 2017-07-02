@@ -6,29 +6,38 @@ import { Observable } from 'rxjs/Observable';
 
 import tonal from 'tonal';
 
+
+// TODO
+// [x] Find a way to append '4' to scale notes to create MIDI
+// [x] Find a way to append '4' to chord notes to create MIDI
+// [x] Find a way to generate chords that are only relevant to that scale
+
 @Injectable()
 export class ScaleDataService {
 
   notes: String[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+  // M = Major (triad)
+  // m = minor (triad)
+  // Maj7 = Major (seventh)
+  // m7 = minor (seventh)
+  // 7 = secondary dominate
+  chordNames: String[] = [ 'M', 'm', 'Maj7', 'm7', '7' ];
+
+  scaleNames: String[] = [ 'major', 'minor', 'lydian', 'chromatic', 'dorian', 'major blues', 'minor blues' ];
 
   constructor(
     private api: ApiService
   ) { }
 
   getScaleFromName(scaleName: String): Scale {
-
     let notes = tonal.scale(scaleName);
-
-    for (let i = 0; i < notes.length; i++) {
-      notes[i] = notes[i] + '4';
-    }
-
-    console.log(notes);
+    let midiNotes = this.getMidiNotes(notes);
 
     let scale = new Scale({
       name: scaleName[0],
       type: scaleName[1],
-      notes: notes
+      notes: midiNotes
     });
 
     return scale;
@@ -36,7 +45,8 @@ export class ScaleDataService {
   }
 
   getAllScaleNames(): String[] {
-    return tonal.scale.names();
+    return this.scaleNames;
+    //return tonal.scale.names();
   }
 
   // Simulate get /scales
@@ -72,36 +82,107 @@ export class ScaleDataService {
     return this.api.getChordsFromScaleId(scaleId);
   }
 
-  getChordsBasedOnScale(scale: Scale): Chord[] {
+  // C, D, E, F, G, A, B, C
+  // I  ii iii IV, V, vi
+  // Major: I, IV, V
+  // Minor: ii, iii, vi
 
-    let chords: Chord[] = [];
-    let chordNames: String[] = tonal.chord.names();
+  // M = Major (triad)
+  // m = minor (triad)
+  // Maj7 = Major (seventh)
+  // m7 = minor (seventh)
+  // 7 = secondary dominate
 
-    /*
-    id: number;
-    name: string;
-    type: string;
-    length: number;
-    notes: Array<string>;
-    fileUrl: string;
-    belongsToScaleId: Array<number>;
-    */
+  // return triads, sevenths, and secondary dominate
+  getChordsBasedOnScale(scale: Scale): Array<Array<Chord>> {
 
-    for (let name of chordNames) {
+    let chords: Array<Chord[]> = [];
 
-      let notes: String[] = tonal.chord(scale.name + ' ' + name);
+    for (let note of scale.notes) {
+      for (let name of this.chordNames) {
 
-      chords.push(new Chord({
-        name: scale.name,
-        type: name,
-        notes: notes
-      }));
+        // note[0] is the note without the pitch
+        let properNote = note[0];
+        let notes: String[] = tonal.chord(properNote+ ' ' + name);
+        let midiNotes = this.getMidiNotes(notes);
+
+        let chordsIndex = 0;
+
+        switch (name) {
+          case 'M':
+          case 'm': {
+            chordsIndex = 0;
+            break;
+          }
+          case 'Maj7':
+          case 'm7': {
+            chordsIndex = 1;
+            break;
+          }
+          case '7': {
+            chordsIndex = 2;
+            break;
+          }
+          default: {
+            chordsIndex = 3;
+            break;
+          }
+        }
+
+        if (chords[chordsIndex] == null) {
+          chords[chordsIndex] = [];
+        }
+
+        chords[chordsIndex].push(new Chord({
+          name: properNote,
+          type: name,
+          notes: midiNotes
+        }));
+
+      } // end chordNames for
+    } // end notes for
+
+    for (let theseChords of chords) {
+      theseChords.sort((a, b) => Math.abs(scale.name.charCodeAt(0) - a.notes[0].charCodeAt(0)) -
+                            Math.abs(scale.name.charCodeAt(0) - b.notes[0].charCodeAt(0)));
     }
 
-    chords.sort((a, b) => a.notes.length - b.notes.length);
+    /*
+    chords.sort(function(a, b) {
+
+      let scaleBaseNote = scale.name.charCodeAt(0);
+      let chordABaseNote = a.notes[0].charCodeAt(0);
+      let chordBBaseNote = b.notes[0].charCodeAt(0);
+
+      return Math.abs(scaleBaseNote - chordABaseNote) - Math.abs(scaleBaseNote - chordBBaseNote);
+    });*/
 
     return chords;
 
+  }
+
+  // Examples
+  // [ 'C', 'E', 'G' ] => [ 'C4', 'E4', 'G4' ]
+  // [ 'A', 'C', 'E' ] => [ 'A4', 'C5', 'E5' ]
+
+  // [ 'C', 'D', 'E', 'F', 'G', 'A', 'B' ]
+  // newIndex < baseNoteIndex >= scale.length
+  getMidiNotes(notes: String[]): String[] {
+    let result: String[] = [];
+
+    let baseNoteIndex = this.notes.indexOf(notes[0].toString());
+
+    for(let note of notes) {
+
+      let higherOctave = (this.notes.indexOf(note.toString())) < baseNoteIndex;
+
+      result.push(note + ((!higherOctave) ? '4': '5'));
+    }
+    //console.log('before: ' );
+    //console.log(notes);
+    //console.log('after: ');
+    //console.log(result);
+    return result;
   }
 
 }
