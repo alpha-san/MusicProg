@@ -8,6 +8,8 @@ import { Song } from './song';
 @Injectable()
 export class ToneAudioService {
 
+  sequence: Sequence;
+
   constructor() { }
 
   ngOnInit() {
@@ -27,26 +29,32 @@ export class ToneAudioService {
 
   playScale(scale: Scale) {
 
-    console.log('tone-audio: playScale()');
+    Transport.stop();
+    Transport.cancel(0);
+
+    console.log('playScale notes:');
 
     let synth = new Synth().toMaster();
-    let myScale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];
+    let myScale = scale.notes;
+
+    console.log(myScale);
+    /*let myScale = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'];*/
 
     //let pattern = new Pattern(function (time, note) {
       //the order of the notes passed in depends on the pattern
       //synth.triggerAttackRelease(note, "4n", time);
     //}, myScale, patternName).start(0);
 
-    let seq = new Sequence(function(time, note) {
+    this.sequence = new Sequence(function(time, note) {
       synth.triggerAttackRelease(note, "4n", time);
     }, myScale, "4n");
-    seq.start(Now);
-    seq.loop = 0;
-    seq.stop(Now + 4);
+    //seq.loop = 0;
+    this.sequence.start(0);
+    this.sequence.stop("2m");
 
     var tempo = 120;
     Transport.bpm.value = tempo
-    synth.volume.value = 10;
+    synth.volume.value = -15;
     Transport.start("+0.1");
 
   }

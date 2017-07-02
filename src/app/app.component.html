@@ -14,9 +14,10 @@
 
 <app-scale-selector 
   *ngIf="redirectToScaleComponent"
-  [scales]="listOfScales" 
+  [notes]="listOfNotes" 
+  [types]="listOfScaleTypes"
   (selectScale)="onScaleChange($event)"
-  (playFile)="playFile($event)"
+  (playScale)="playScale($event)"
   (scaleSelectionComplete)="goToSongPage()"
   >
 </app-scale-selector>

@@ -6,6 +6,7 @@ import { Song } from './song';
 import { Scale } from './scale';
 import { Chord } from './chord';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +22,9 @@ export class AppComponent implements OnInit {
   // For now use new song until we store in DB
   song: Song = new Song();
 
-  listOfScales: Scale[] = [];
+  listOfNotes: String[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+  listOfScaleTypes: String[];
 
   listOfChords: Chord[] = [];
 
@@ -38,25 +41,29 @@ export class AppComponent implements OnInit {
     ) { }
 
   public ngOnInit() {
-    this.scaleDataService
+
+    this.listOfScaleTypes = this.scaleDataService.getAllScaleNames();
+
+    /*this.scaleDataService
       .getAllScales()
       .subscribe(
         (scales) => {
           this.listOfScales = scales;
         }
-      );
+      );*/
   }
 
-  onScaleChange(scale: Scale) {
-    this.song.scale = scale;
+  onScaleChange(scaleName: String) {
+    this.song.scale = this.scaleDataService.getScaleFromName(scaleName);
 
-    this.scaleDataService
+    this.listOfChords = this.scaleDataService.getChordsBasedOnScale(this.song.scale);
+    /*(this.scaleDataService
       .getChordsBasedOnScaleId(scale.id)
       .subscribe(
         (chords) => {
           this.listOfChords = chords;
         }
-      );
+      );*/
   }
 
   addChord(chord: Chord) {
@@ -71,6 +78,10 @@ export class AppComponent implements OnInit {
     /*this.song.chords = this.song.chords.filter(
       chord => chord.id !== index
     );*/
+  }
+
+  playScale(scaleName: string) {
+    this.toneAudioService.playScale(this.song.scale);
   }
 
   playFile(fileUrl: string) {

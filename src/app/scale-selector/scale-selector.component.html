@@ -5,18 +5,22 @@
 
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
   </h1>
-  <select (change)="onScaleChange($event)" id="scaleSelectDropdown" [(ngModel)]="selectedScale">
-  <!--<select id="scaleSelectDropdown" [(ngModel)]="selectedScale">-->
-  <option *ngFor="let s of scales" [ngValue]="s">{{s.name}} {{s.type}}</option>
-</select>
+  <select (change)="onNoteChange($event)" id="noteSelectDropdown" [(ngModel)]="selectedNote">
+    <!--<select id="scaleSelectDropdown" [(ngModel)]="selectedScale">-->
+    <option *ngFor="let note of notes" [ngValue]="note">{{note}}</option>
+  </select>
 
-  <div class="scaleButtonArea" *ngIf="selectedScale">
-    <button (click)="onPlayFile(selectedScale.fileUrl)" class="btn btn-default" id="scaleHearButton">
+  <select (change)="onTypeChange($event)" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
+    <option *ngFor="let type of types" [ngValue]="type" >{{type}}</option>
+  </select>
+
+  <div class="scaleButtonArea" *ngIf="selectedNote && selectedType">
+    <button (click)="onPlayScale()" class="btn btn-default" id="scaleHearButton">
 
       Listen &nbsp; 
 
       <span class="glyphicon glyphicon-volume-up"></span>
     </button>
-    <button *ngIf="selectedScale" class="btn btn-default" id="scaleNextButton" (click)="onScaleSelectionComplete(true)" >Next</button>
+    <button class="btn btn-default" id="scaleNextButton" (click)="onScaleSelectionComplete(true)" >Next</button>
   </div>
 </div>

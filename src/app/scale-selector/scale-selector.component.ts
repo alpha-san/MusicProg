@@ -8,15 +8,19 @@ import { Scale } from '../scale';
 })
 export class ScaleSelectorComponent implements OnInit {
 
-  selectedScale: Scale;
+  selectedNote: String;
 
-  @Input() scales: Scale[];
+  selectedType: String;
+
+  @Input() notes: String[];
+
+  @Input() types: String[];
 
   @Output()
-  selectScale: EventEmitter<Scale> = new EventEmitter();
+  selectScale: EventEmitter<any> = new EventEmitter();
 
   @Output()
-  playFile: EventEmitter<String> = new EventEmitter();
+  playScale: EventEmitter<String> = new EventEmitter();
 
   @Output()
   scaleSelectionComplete: EventEmitter<any> = new EventEmitter();
@@ -26,16 +30,23 @@ export class ScaleSelectorComponent implements OnInit {
   ngOnInit() {
   }
 
-  onScaleChange(scale: EventEmitter<Scale>) {
-    this.selectScale.emit(this.selectedScale);
+  onNoteChange() {
+    if (this.selectedNote && this.selectedType)
+      this.selectScale.emit(this.selectedNote + ' ' + this.selectedType);
   }
 
-  onPlayFile(fileUrl: String) {
-    console.log(fileUrl);
-    this.playFile.emit(fileUrl);
+  onTypeChange() {
+    if (this.selectedNote && this.selectedType)
+      this.selectScale.emit(this.selectedNote + ' ' + this.selectedType);
+  }
+
+  onPlayScale() {
+    let scaleName = this.selectedNote + ' ' + this.selectedType;
+    this.playScale.emit(scaleName);
   }
 
   onScaleSelectionComplete(status: boolean) {
+    this.selectScale.emit(this.selectedNote + ' ' + this.selectedType);
     this.scaleSelectionComplete.emit(status);
   }
 
