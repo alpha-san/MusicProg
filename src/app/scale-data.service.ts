@@ -15,7 +15,7 @@ import tonal from 'tonal';
 @Injectable()
 export class ScaleDataService {
 
-  notes: string[] = [ 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+  notes: string[] = [ 'C', 'C#', 'Db', 'D', 'Eb', 'E', 'Fb', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'B#', 'Bbb'];
 
   // M = Major (triad)
   // m = minor (triad)

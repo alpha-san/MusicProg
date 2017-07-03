@@ -52,7 +52,7 @@ export class ToneAudioService {
     Transport.start("+0.1");*/
 
     let synth = new Synth().toMaster();
-    let myScale = scale.notes;
+    let myScale = scale.notes.slice();
     let lastNote = myScale[0].slice(0, -1) + '5';
     myScale.push(lastNote);
             

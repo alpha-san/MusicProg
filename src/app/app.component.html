@@ -30,6 +30,7 @@
 <app-chord-selector 
   *ngIf="redirectToChordsComponent"
   [chords]="listOfChords"
+  [scaleNotes]="song.scale.notes"
   [selectedChords]="song.chords"
   (addChord)="addChord($event)"
   (playChord)="playChord($event)"

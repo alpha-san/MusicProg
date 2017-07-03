@@ -27,7 +27,7 @@
           <label>{{chord.name}} {{chord.type}}</label> <br />
 
           <div>
-            <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last">
+            <span class="chordNote" *ngFor="let note of chord.notes; let isLast=last" [style.color]="(scaleNotes.includes(note)) ? 'black': 'red'" >
               {{note.slice(0, -1)}}{{isLast ? '' : ', '}}
             </span>
           </div>

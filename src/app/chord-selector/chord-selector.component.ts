@@ -10,6 +10,8 @@ export class ChordSelectorComponent implements OnInit {
 
   @Input() chords: Chord[];
 
+  @Input() scaleNotes: string[];
+
   @Input() selectedChords: Chord[];
 
   @Output()
