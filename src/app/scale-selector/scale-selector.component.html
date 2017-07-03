@@ -16,7 +16,7 @@
   </select>
 
   <div *ngIf="selectedScale">
-    <span *ngFor="let note of selectedScale.notes">{{note.slice(0, -1)}}</span>
+    <span *ngFor="let note of selectedScale.notes; let isLast = last">{{note.slice(0, -1)}}{{isLast ? '' : ', '}}</span>
   </div>
 
   <div class="scaleButtonArea" *ngIf="selectedNote && selectedType">

@@ -31,12 +31,14 @@ export class ScaleDataService {
   ) { }
 
   getScaleFromName(scaleName: String): Scale {
+
+    let scaleParts = scaleName.split(' ');
     let notes = tonal.scale(scaleName);
     let midiNotes = this.getMidiNotes(notes);
 
     let scale = new Scale({
-      name: scaleName[0],
-      type: scaleName[1],
+      name: scaleParts[0],
+      type: scaleParts[1],
       notes: midiNotes
     });
 

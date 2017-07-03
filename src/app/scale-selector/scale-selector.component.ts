@@ -32,6 +32,12 @@ export class ScaleSelectorComponent implements OnInit {
   ngOnInit() {
     if (!this.selectedScale)
       this.selectedScale = new Scale();
+
+    if (this.selectedScale.name)
+      this.selectedNote = this.selectedScale.name;
+
+    if (this.selectedScale.type)
+      this.selectedType = this.selectedScale.type;
   }
 
   onNoteChange() {

@@ -3,7 +3,7 @@
 
 <br />
 
-<label class="songCreatorLabel">Scale:</label> <span class="songCreatorSpan"> {{song.scale ? song.scale.name + ' ' + song.scale.type  : 'n/a'}} </span>
+<label class="songCreatorLabel">Scale:</label> <span class="songCreatorSpan" style="text-transform: capitalize;"> {{song.scale ? (song.scale.name + ' ' + song.scale.type) : 'n/a'}} </span>
 
   <button class="btn btn-default" (click)="showScaleSelection()">Add Scale</button>
 
