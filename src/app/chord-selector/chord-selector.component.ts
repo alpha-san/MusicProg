@@ -32,6 +32,7 @@ export class ChordSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.scaleNotes = this.scaleNotes.map(x => x.slice(0, -1));
   }
 
   onAddChord(chord: Chord) {
