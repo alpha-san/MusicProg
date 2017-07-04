@@ -1,11 +1,14 @@
 <div class="chordSelection">
 
-  <button class="btn btn-default" (click)="onChordSelectionComplete()">Back</button>
+  <!--<button id="chordSelectionBackButton" class="btn btn-default" (click)="onChordSelectionComplete()">Back</button>-->
 
-  <h1>
-    Select a few chords
+  <div>
+    <h1>
+      Select a few chords
+    </h1>
+    &nbsp;
     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A chord is a group of notes when played together form a harmony "></span>
-  </h1>
+  </div>
 
   <!-- 
     M = Major (triad)
@@ -15,7 +18,7 @@
     7 = secondary dominate
   -->
   <div class="chordsContainer">
-    <div *ngFor="let typeChords of chords">
+    <div class="chordsByTypeDiv" *ngFor="let typeChords of chords; let isLastChordType=last" [style.margin-bottom]="isLastChordType ? '17%' : '3%'">
       <div class="chordTypeDiv" *ngIf="typeChords.length > 0">
         {{typeChords[0].type}} Chords
       </div>
@@ -49,21 +52,28 @@
 
 <div class="chordProgressionListFooter">
   <div id="chordProgressionListDiv">
-    <span id="chordsSelectedLabel">Chords selected:</span>
+    <span id="chordsSelectedLabel">Chords selected:&nbsp;</span>
 
     <div id="selectedChordListDiv">
-      <div class="selectedChord" *ngFor="let chord of selectedChords; let i = index">
-        <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>
-        <button (click)="onRemoveChord(i)">x</button> &nbsp;
+      <div class="selectedChord" *ngFor="let chord of selectedChords; let i = index; let isLast = last;">
+        <span class="selectedChordName">{{chord.name}} {{chord.type}}</span>{{isLast ? '' : ', '}}
+        <button class="chordRemovalButton" (click)="onRemoveChord(i)">x</button> &nbsp;
       </div>
     </div>
 
   </div>
 
-  <div id="chordProgressionListenDiv" (click)="onPlayChordProgression()" class="btn btn-default">
-    Listen
-    <span class="glyphicon glyphicon-volume-up"></span>
+  <div id="chordProgressionListenDiv">
+    <div id="playChordProgButton" (click)="onPlayChordProgression()" class="btn btn-default">
+      <span class="glyphicon glyphicon-play"></span>
+    </div>
+    <button id="chordSelectionCompleteButton" (click)="onChordSelectionComplete()" class="btn btn-default">NEXT</button>
   </div>
 
-  <button (click)="onChordSelectionComplete()" class="btn btn-default">NEXT</button>
 </div>
+
+<script>
+  $(function() {
+    $(".mastfoot").hide();
+  })
+  </script>

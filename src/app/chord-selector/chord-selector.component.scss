@@ -1,0 +1,82 @@
+h1 {
+    color: white;
+    display: inline-block;
+}
+
+.glyphicon-info-sign {
+    color: white;
+    display: inline-block;
+}
+
+.chordTypeDiv {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.chordsByTypeDiv {
+    margin-bottom: 3%;
+}
+
+#chordSelectionBackButton {
+    position: fixed;
+    width: 32%;
+    left: 0%;
+    top: 10%;
+    z-index: 12;
+    opacity: .95;
+}
+
+.chordProgressionListFooter {
+    padding: 2%;
+    height: 103px;
+    background: white;
+    opacity: .9;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.chordRemovalButton {
+    font-size: 9pt;
+    width: initial;
+}
+
+#playChordProgButton {
+    width: 36%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    height: 103px;
+    top: -16px;
+    border-radius: 0;
+    border: none;
+    background: aquamarine;
+    color: white;
+    font-size: 36pt;
+    padding-top: 9%;
+}
+
+#chordSelectionCompleteButton {
+    width: 71%;
+    display: inline-block;
+    position: absolute;
+    right: -7%;
+    height: 103px;
+    top: -16px;
+    font-size: 17pt;
+    font-weight: bold;
+    border-radius: 0;
+    border: none;
+    background: black;
+    color: white;
+}
+
+#selectedChordListDiv {
+    text-align: left;
+}
+
+#chordProgressionListenDiv {
+    height: 100%;
+    position: relative;
+}

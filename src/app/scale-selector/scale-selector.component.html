@@ -1,21 +1,27 @@
 <div class="scaleSelector">
+  <div>
   <h1>
 
     Select a scale
 
-    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
   </h1>
-  <select (change)="onNoteChange()" id="noteSelectDropdown" [(ngModel)]="selectedNote">
+  &nbsp;
+  <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="A scale is a set of musical notes"></span>
+  </div>
+  <select (change)="onNoteChange()" id="noteSelectDropdown" class="scaleSelectDropdown" [(ngModel)]="selectedNote">
+    <option [value]="undefined" disabled selected hidden>Select Note</option>
     <option *ngFor="let note of notes" [ngValue]="note">{{note}}</option>
   </select>
 
 
   <!--<select (change)="onTypeChange($event)" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">-->
-  <select (change)="onTypeChange()" id="typeSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
+  <select (change)="onTypeChange()" id="typeSelectDropdown" class="scaleSelectDropdown" [(ngModel)]="selectedType" style="text-transform: capitalize;">
+    <option [value]="undefined" disabled selected hidden>Select Type</option>
     <option *ngFor="let type of types" [ngValue]="type" >{{type}}</option>
   </select>
 
-  <div *ngIf="selectedScale">
+  <div id="selectedScaleNotesDiv" *ngIf="selectedScale.notes">
+    <span>Scale notes: </span>
     <span *ngFor="let note of selectedScale.notes; let isLast = last">{{note.slice(0, -1)}}{{isLast ? '' : ', '}}</span>
   </div>
 

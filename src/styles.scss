@@ -44,7 +44,8 @@ input, button {
     width: 100%;
 }
 
-#scaleSelectDropdown {
+
+.scaleSelectDropdown {
    -webkit-appearance: button;
    -webkit-border-radius: 2px;
    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -65,7 +66,7 @@ input, button {
    font-size: 16pt;
 }
 
-select#scaleSelectDropdown Option {
+select.scaleSelectDropdown Option {
     font-size: 16pt;
 }
 
@@ -98,6 +99,7 @@ select#scaleSelectDropdown Option {
     width: 50%;
     display: inline-block;
     position: absolute;
+    font-size: 16pt;
 }
 
 .chordDiv label {
@@ -170,6 +172,7 @@ app-song-creator {
   height: 100%;
   position: absolute;
   background-color: $primary-bg-color;
+  padding-bottom: 50px;
 }
 
 app-song-creator {
@@ -178,7 +181,7 @@ app-song-creator {
 }
 
 app-scale-selector {
-  padding-top: 15%;
+  padding-top: 5%;
   z-index: 2;
 }
 
@@ -196,3 +199,7 @@ app-generate-midi {
     font-size: 15pt;
     padding: 10px;
 }
+
+/*.mastfoot {
+    z-index: 10;
+}*/
