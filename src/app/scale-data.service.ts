@@ -22,7 +22,7 @@ export class ScaleDataService {
   // Maj7 = Major (seventh)
   // m7 = minor (seventh)
   // 7 = secondary dominate
-  chordNames: string[] = [ 'M', 'm', 'Maj7', 'm7', '7' ];
+  chordNames: string[] = [ 'M', 'm', 'Maj7', 'm7', '7', 'o', '7sus4' ];
 
   scaleNames: string[] = [ 'major', 'minor', 'lydian', 'chromatic', 'dorian', 'major blues', 'minor blues' ];
 
@@ -104,7 +104,7 @@ export class ScaleDataService {
       for (let name of this.chordNames) {
 
         // note[0] is the note without the pitch
-        let properNote = note[0];
+        let properNote = note.slice(0, -1);
         let notes: string[] = tonal.chord(properNote+ ' ' + name);
         let midiNotes = this.getMidiNotes(notes);
 
@@ -125,8 +125,16 @@ export class ScaleDataService {
             chordsIndex = 2;
             break;
           }
-          default: {
+          case '7sus4': {
             chordsIndex = 3;
+            break;
+          }
+          case 'o': {
+            chordsIndex = 4;
+            break;
+          }
+          default: {
+            chordsIndex = 5;
             break;
           }
         }
@@ -176,14 +184,12 @@ export class ScaleDataService {
 
     for(let note of notes) {
 
-      let higherOctave = (this.notes.indexOf(note.toString())) < baseNoteIndex;
+      //let simplifiedNote = tonal.note.simplify(note);
+      let simplifiedNote = note;
+      let higherOctave = (this.notes.indexOf(simplifiedNote) < baseNoteIndex);
 
-      result.push(note + ((!higherOctave) ? '4': '5'));
+      result.push(simplifiedNote + ((!higherOctave) ? '4': '5'));
     }
-    //console.log('before: ' );
-    //console.log(notes);
-    //console.log('after: ');
-    //console.log(result);
     return result;
   }
 

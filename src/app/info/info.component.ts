@@ -10,6 +10,9 @@ export class InfoComponent implements OnInit {
   @Output()
   createASong: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  redirectToHomePage: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -18,5 +21,11 @@ export class InfoComponent implements OnInit {
   onCreateASong() {
     this.createASong.emit();
   }
+
+  onRedirectToHomePage() {
+    this.redirectToHomePage.emit();
+  }
+
+  
 
 }

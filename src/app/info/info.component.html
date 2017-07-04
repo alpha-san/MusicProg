@@ -8,9 +8,11 @@
 
         <div class="masthead clearfix">
           <div class="inner">
+            <a style="cursor: pointer;" (click)="onRedirectToHomePage()">
             <h3 class="masthead-brand">MusicProg</h3>
+            </a>
             <nav class="nav nav-masthead">
-              <a class="nav-link active" href="#">Home</a>
+              <a class="nav-link active" href="#" (click)="onRedirectToHomePage()">Home</a>
               <a class="nav-link" href="#">Contact</a>
             </nav>
           </div>
