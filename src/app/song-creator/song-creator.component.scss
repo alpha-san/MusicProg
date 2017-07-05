@@ -2,3 +2,85 @@
     color: white;
 }
 
+.songFooter {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.formLabel {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: grey;
+}
+
+.songCreatorFormElementDiv {
+    position: relative;
+    margin-bottom: 5%;
+}
+
+#scaleEditButton {
+    text-transform: capitalize;
+    height: 40px;
+    border-radius: 0;
+    font-size: 13pt;
+    padding-top: 2px;
+    text-align: left;
+}
+
+input {
+    font-size: 13pt;
+    height: 40px;
+}
+
+.chordSectionDiv {
+    background-color: lightpink;
+    padding: 5px;
+    padding-top: 10px;
+    min-height: 133px;
+}
+
+#songcreatorPlayChordsButton {
+    border-radius: 0;
+    border: none;
+    height: 40px;
+}
+
+#songcreatorPlayChordsButton .glyphicon-play {
+    color: black;
+}
+
+.songCreatorLabel {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.chordDiv {
+    height: 100px;
+    background-color: white;
+    width: 25%;
+    margin: 0 auto;
+    border: 1px solid lightgrey;
+}
+
+.songFooter button {
+    font-size: 11pt;
+    height: 40px;
+    border-radius: 0;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.chordName, .chordNote {
+    color: black;
+}
+
+#chordPageButton {
+    cursor: pointer;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 57px;
+}

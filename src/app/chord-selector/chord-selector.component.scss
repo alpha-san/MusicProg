@@ -27,7 +27,6 @@ h1 {
 }
 
 .chordProgressionListFooter {
-    padding: 2%;
     height: 103px;
     background: white;
     opacity: .9;
@@ -48,22 +47,20 @@ h1 {
     position: absolute;
     left: 0;
     height: 103px;
-    top: -16px;
     border-radius: 0;
     border: none;
     background: aquamarine;
     color: white;
     font-size: 36pt;
-    padding-top: 9%;
+    padding-top: 21px;
 }
 
 #chordSelectionCompleteButton {
-    width: 71%;
+    width: 64%;
     display: inline-block;
     position: absolute;
-    right: -7%;
+    right: 0%;
     height: 103px;
-    top: -16px;
     font-size: 17pt;
     font-weight: bold;
     border-radius: 0;
@@ -74,6 +71,10 @@ h1 {
 
 #selectedChordListDiv {
     text-align: left;
+}
+
+#chordProgressionListDiv {
+    padding: 1%;
 }
 
 #chordProgressionListenDiv {

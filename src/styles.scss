@@ -32,6 +32,10 @@ input, button {
   font-size: 18pt;
 }
 
+input {
+    text-indent: 10px;
+}
+
 .selectedChord {
     display: inline;
 }
@@ -176,7 +180,7 @@ app-song-creator {
 }
 
 app-song-creator {
-  padding-top: 10%;
+  padding-top: 5%;
   z-index: 1;
 }
 

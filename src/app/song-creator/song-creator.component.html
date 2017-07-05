@@ -1,42 +1,59 @@
-<label class="songCreatorLabel">Song Name: </label>
-<input [(ngModel)]="song.name" placeholder="Song Name" autofocus="">
+<div class="container">
 
-<br />
+  <h1>SONG CREATOR</h1>
 
-<label class="songCreatorLabel">Scale:</label> <span class="songCreatorSpan" style="text-transform: capitalize;"> {{song.scale ? (song.scale.name + ' ' + song.scale.type) : 'n/a'}} </span>
+  <div class="row">
+    <div class="col-sm-6">
 
-  <button class="btn btn-default" (click)="showScaleSelection()">Add Scale</button>
+      <div class="songCreatorFormElementDiv">
+        <input [(ngModel)]="song.name" placeholder="My Song" autofocus="">
+        <span class="formLabel">Song Name</span>
+      </div>
 
-  <br />
+      <div class="songCreatorFormElementDiv">
+        <button id="scaleEditButton" class="btn btn-default" (click)="showScaleSelection()">{{song.scale ? (song.scale.name + ' ' + song.scale.type) : 'n/a'}} </button>
+        <span class="formLabel">{{song.scale ? 'Change Scale' : 'Add Scale' }}</span> 
+      </div>
 
-  <label class="songCreatorLabel">BPM: </label>
-  <input [(ngModel)]="song.bpm" type="number" placeholder="BPM">
+      <div class="songCreatorFormElementDiv">
+        <input [(ngModel)]="song.bpm" type="number" >
+        <span class="formLabel">BPM</span>
+      </div>
+    </div>
 
-  <div class="chordSectionDiv">
-    <label class="songCreatorLabel">Chords List: </label>
-    <a *ngIf="song.scale" (click)="showChordSelection()">edit</a>
+    <div class="col-sm-6">
+      <div class="chordSectionDiv">
+        <label class="songCreatorLabel">Chords List: </label>
+        <a *ngIf="song.scale" id="chordPageButton" (click)="showChordSelection()">{{ (song.chords.length > 0) ? 'edit' : 'add' }}</a>
 
-    <div class="chordsListDiv">
-      <div class="chordDiv" *ngFor="let chord of song.chords">
-        <span class="glyphicon glyphicon-music songCreatorSpan"></span>
+        <div class="chordsListDiv">
+          <div class="chordDiv" *ngFor="let chord of song.chords">
+            <!--<span class="glyphicon glyphicon-music songCreatorSpan"></span>-->
 
-        <span class="chordName songCreatorSpan">{{chord.name}}</span>
+            <span class="chordName songCreatorSpan">{{chord.name}} {{chord.type}}</span>
 
-        <div class="chordNotes">
-          <span class="chordNote songCreatorSpan" *ngFor="let note of chord.notes; let isLast=last">{{note[0]}}{{isLast ? '' : ', '}}</span>
+            <div class="chordNotes">
+              <span class="chordNote songCreatorSpan" *ngFor="let note of chord.notes; let isLast=last">{{note.slice(0, -1)}}{{isLast ? '' : ', '}}</span>
+            </div>
+          </div>
+
+          <!-- TODO add option once Tone.js Transport is working -->
+          <!--<span class="glyphicon glyphicon-pencil songCreatorSpan" onclick="editChordLengthPopup()"></span>-->
         </div>
       </div>
 
-      <!-- TODO add option once Tone.js Transport is working -->
-      <!--<span class="glyphicon glyphicon-pencil songCreatorSpan" onclick="editChordLengthPopup()"></span>-->
+      <button id="songcreatorPlayChordsButton" class="btn btn-default" (click)="playChordProgression()">
+        <span class="glyphicon glyphicon-play songCreatorSpan"></span>
+      </button>
+
     </div>
   </div>
 
+
   <div class="songFooter">
-    <button class="btn btn-default" (click)="playChordProgression()">
-    <span class="glyphicon glyphicon-play songCreatorSpan"></span>
-  </button>
     <button (click)="generateMidi()">Generate Midi</button>
-    <a id="downloadMidiLink" style="display: none;" download="{{(song.name) ? (song.name + '.mid') : 'mysong.mid'}}" [href]="midiFileUrl" target="_blank" #downloadMidiLink>DOWNLOAD MIDI</a>
+    <a id="downloadMidiLink" style="display: none;" download="{{(song.name) ? (song.name + '.mid') : 'mysong.mid'}}" [href]="midiFileUrl"
+      target="_blank" #downloadMidiLink>DOWNLOAD MIDI</a>
   </div>
 
+</div>
