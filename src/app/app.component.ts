@@ -104,9 +104,7 @@ export class AppComponent implements OnInit {
   }
 
   sanitize(url:string){
-    //return this.sanitizer.bypassSecurityTrustUrl(url);
 
-    // XSS risks
     console.log(this.sanitizer.bypassSecurityTrustResourceUrl(url));
     console.log(this.sanitizer.bypassSecurityTrustUrl(url));
     console.log(this.sanitizer.bypassSecurityTrustStyle(url));
