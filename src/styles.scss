@@ -10,7 +10,8 @@ $primary-font-color: #fff;
 /* START
  * Cover Essentials
  */
- html,
+
+html,
 body {
   height: 100%;
   background-color: #333;
@@ -45,7 +46,7 @@ input {
 }
 
 
-.scaleSelectDropdown {
+.scaleselector-dropdown {
    -webkit-appearance: button;
    -webkit-border-radius: 2px;
    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -66,7 +67,7 @@ input {
    font-size: 16pt;
 }
 
-select.scaleSelectDropdown Option {
+select.scaleselector-dropdown Option {
     font-size: 16pt;
 }
 
@@ -84,18 +85,19 @@ select.scaleSelectDropdown Option {
     position: relative;
 }
 
-.scaleSelector {
+.scaleselector {
     min-height: 100px;
     width: 90%;
     position: relative;
     margin: auto;
 }
 
-#scaleHearButton {
+#scaleselector-buttongroup-listenbutton {
     left: 0;
 }
 
-#scaleHearButton, #scaleNextButton {
+#scaleselector-buttongroup-listenbutton, 
+#scaleselector-buttongroup-nextbutton {
     width: 50%;
     display: inline-block;
     position: absolute;
@@ -302,21 +304,22 @@ app-scale-selector h1 {
     display: inline-block;
 }
 
-#selectedScaleNotesDiv {
+#scaleselector-scalenotes {
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
-#selectedScaleNotesDiv span {
+#scaleselector-scalenotes span {
     color: white;
 }
 
-#noteSelectDropdown {
+#scaleselector-noteselect {
     width: 30%;
 }
 
-#typeSelectDropdown {
+#scaleselector-typeselect {
     width: 69%;
+    text-transform: capitalize;
 }
 
 app-scale-selector .glyphicon-info-sign {
@@ -420,3 +423,40 @@ app-scale-selector .glyphicon-info-sign {
  * END
  * Chord Selector styles
  */
+
+ /*
+  * START
+  * Responsive design
+  */
+
+@media only screen and (max-width: 766px) {
+    .nav-masthead {
+        display: none;
+    }
+
+} 
+
+@media only screen and (max-width: 639px) {
+    #chordselector-footer-listen-playprogbutton {
+        font-size: 15pt;
+        padding-top: 40px;
+    }
+    #chordselector-footer-listen-nextbutton {
+        font-size: 12pt;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #scaleselector-noteselect {
+        width: 100%;
+    }
+    #scaleselector-typeselect {
+        width: 100%;
+        margin-top: 1%;
+    }
+}
+
+ /*
+  * END
+  * Responsive design
+  */
