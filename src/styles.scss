@@ -6,6 +6,7 @@
 $primary-font: 'Open Sans', sans-serif;
 $primary-bg-color: #333;
 $primary-font-color: #fff;
+$black: #333;
 
 /* START
  * Cover Essentials
@@ -105,7 +106,7 @@ select.scaleselector-dropdown Option {
 }
 
 .songcreator-chord label {
-    color: black;
+    color: $black;
     margin-top: 5px;
 }
 
@@ -246,7 +247,7 @@ app-generate-midi {
 }
 
 #songcreator-play-chords-button .glyphicon-play {
-    color: black;
+    color: $black;
 }
 
 .songcreator-chords-section-label {
@@ -276,7 +277,7 @@ app-generate-midi {
 }
 
 .songcreator-chord-name, .songcreator-chord-note {
-    color: black;
+    color: $black;
 }
 
 #chordPageButton {
@@ -407,7 +408,7 @@ app-scale-selector .glyphicon-info-sign {
     right: 0%;
     font-size: 17pt;
     font-weight: bold;
-    background: black;
+    background: $black;
 }
 
 #chordselector-footer-listen {

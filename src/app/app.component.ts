@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
       );*/
   }
 
-  onScaleChange(scaleName: String) {
+  onScaleChange(scaleName: string) {
     this.song.scale = this.scaleDataService.getScaleFromName(scaleName);
 
     this.listOfChords = this.scaleDataService.getChordsBasedOnScale(this.song.scale);

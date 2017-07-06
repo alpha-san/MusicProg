@@ -6,31 +6,73 @@ import { Observable } from 'rxjs/Observable';
 
 import tonal from 'tonal';
 
-
-// TODO
-// [x] Find a way to append '4' to scale notes to create MIDI
-// [x] Find a way to append '4' to chord notes to create MIDI
-// [x] Find a way to generate chords that are only relevant to that scale
+/**
+ * @class ScaleDataService 
+ * 
+ * Retrieves information pertaining to scales and chords
+ */
 
 @Injectable()
 export class ScaleDataService {
 
+  /**
+   * Notes
+   * @type {string[]}
+   * 
+   * Notes is used primarily for reference to generate notes that are identifiable in midi form.
+   * The list contains common notes and uncommon notation of notes (i.e. double flats).
+   */
   notes: string[] = [ 'C', 'C#', 'Db', 'D', 'Eb', 'E', 'Fb', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'B#', 'Bbb'];
 
-  // M = Major (triad)
-  // m = minor (triad)
-  // Maj7 = Major (seventh)
-  // m7 = minor (seventh)
-  // 7 = secondary dominate
+  /**
+   * Chord Names
+   * @type {string[]}
+   * 
+   * These are the most common chords used. These chord names are retrieved from tone.js
+   * The most common chords are:
+   * - M = Major (triad)
+   * - m = minor (triad)
+   * - Maj7 = Major (seventh)
+   * - m7 = minor (seventh)
+   * - 7 = secondary dominate
+   * - 7sus4 = suspended
+   * 
+   * Ex: C Major scale notes: ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+   *               Intervals:   I   ii    iii  IV   V    vi  
+   * Major: I, IV, V
+   * Minor: ii, iii, vi
+   */
   chordNames: string[] = [ 'M', 'm', 'Maj7', 'm7', '7', 'o', '7sus4' ];
 
+  /**
+   * Scale Names 
+   * @type {string[]}
+   * 
+   * These scales are the most common scales used in popular music.
+   * These scales include:
+   * - Major
+   * - Minor
+   * - Lyndian
+   * - Chromatic
+   * - Dorian
+   * - Major Blues
+   * - Minor Blues
+   */
   scaleNames: string[] = [ 'major', 'minor', 'lydian', 'chromatic', 'dorian', 'major blues', 'minor blues' ];
 
   constructor(
     private api: ApiService
   ) { }
 
-  getScaleFromName(scaleName: String): Scale {
+  /**
+   * GetScaleFromName 
+   * 
+   * @param scaleName The name of the scale
+   * @type {string}
+   * 
+   * @returns {Scale} A scale object that contains the name, type, and associated notes
+   */
+  getScaleFromName(scaleName: string): Scale {
 
     let scaleParts = scaleName.split(' ');
     let notes = tonal.scale(scaleName);
@@ -46,16 +88,37 @@ export class ScaleDataService {
 
   }
 
+  /**
+   * GetAllScaleNames 
+   * 
+   * @returns {this.scaleNames} A list of the most common scales in a string format
+   * @type {string[]}
+   */
   getAllScaleNames(): string[] {
     return this.scaleNames;
-    //return tonal.scale.names();
   }
 
-  // Simulate get /scales
+  /**
+   * GetAllScales 
+   * 
+   * Uses the API to retrieve the scales. 
+   * This method is deprecated and no longer used.
+   * 
+   * @returns {Scale[]} A list of scales of in the form of an array
+   * 
+   * @deprecated 
+   */
   getAllScales(): Observable<Scale[]> {
     return this.api.getAllScales();
   }
 
+/**
+ * GetAllScalesNew
+ * 
+ * Uses tonal.js to dynamically generate a list of scales
+ * 
+ * @returns {Scale[]} 
+ */
   getAllScalesNew(): Scale[] {
 
     let scales: Scale[] = [];
@@ -80,22 +143,27 @@ export class ScaleDataService {
 
   }
 
+  /**
+   * GetChordsBasedOnScaleId
+   * 
+   * @param scaleId  The id of the scale that is related to the list of chords being retrieved
+   * @returns {Chord[]}
+   * 
+   * @deprecated
+   */
   getChordsBasedOnScaleId(scaleId: number): Observable<Chord[]>{
     return this.api.getChordsFromScaleId(scaleId);
   }
 
-  // C, D, E, F, G, A, B, C
-  // I  ii iii IV, V, vi
-  // Major: I, IV, V
-  // Minor: ii, iii, vi
 
-  // M = Major (triad)
-  // m = minor (triad)
-  // Maj7 = Major (seventh)
-  // m7 = minor (seventh)
-  // 7 = secondary dominate
 
-  // return triads, sevenths, and secondary dominate
+  /**
+   * GetChordsBasedOnScale
+   * 
+   * @param scale The scale used to get chords
+   * 
+   * @returns {Array<Array<Chords>>}
+   */
   getChordsBasedOnScale(scale: Scale): Array<Array<Chord>> {
 
     let chords: Array<Chord[]> = [];
@@ -103,7 +171,7 @@ export class ScaleDataService {
     for (let note of scale.notes) {
       for (let name of this.chordNames) {
 
-        // note[0] is the note without the pitch
+        // note.slice(0, -1) is the note without the pitch
         let properNote = note.slice(0, -1);
         let notes: string[] = tonal.chord(properNote+ ' ' + name);
         let midiNotes = this.getMidiNotes(notes);
@@ -149,34 +217,30 @@ export class ScaleDataService {
           notes: midiNotes
         }));
 
-      } // end chordNames for
-    } // end notes for
+      } 
+    } 
 
+    // sort chords based on their relation to the base note
     for (let theseChords of chords) {
       theseChords.sort((a, b) => Math.abs(scale.name.charCodeAt(0) - a.notes[0].charCodeAt(0)) -
                             Math.abs(scale.name.charCodeAt(0) - b.notes[0].charCodeAt(0)));
     }
 
-    /*
-    chords.sort(function(a, b) {
-
-      let scaleBaseNote = scale.name.charCodeAt(0);
-      let chordABaseNote = a.notes[0].charCodeAt(0);
-      let chordBBaseNote = b.notes[0].charCodeAt(0);
-
-      return Math.abs(scaleBaseNote - chordABaseNote) - Math.abs(scaleBaseNote - chordBBaseNote);
-    });*/
-
     return chords;
 
   }
 
-  // Examples
-  // [ 'C', 'E', 'G' ] => [ 'C4', 'E4', 'G4' ]
-  // [ 'A', 'C', 'E' ] => [ 'A4', 'C5', 'E5' ]
-
-  // [ 'C', 'D', 'E', 'F', 'G', 'A', 'B' ]
-  // newIndex < baseNoteIndex >= scale.length
+  /**
+   * GetMidiNotes
+   *
+   * Returns a list of notes that contain octaves. Used for midi. 
+   * Ex: 
+   * - [ 'C', 'E', 'G' ] => [ 'C4', 'E4', 'G4' ]
+   * - [ 'A', 'C', 'E' ] => [ 'A4', 'C5', 'E5' ]
+   * 
+   * @param notes A list of notes without the octave notation 
+   * @returns {string[]} A list of notes with octave notation
+   */
   getMidiNotes(notes: string[]): string[] {
     let result: string[] = [];
 

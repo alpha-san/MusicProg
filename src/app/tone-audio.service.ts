@@ -5,11 +5,25 @@ import { Scale } from './scale';
 import { Chord } from './chord';
 import { Song } from './song';
 
+/**
+ * @class ToneAudioService
+ * 
+ * ToneAudioService is used to play chords, scale notes, and chord progressions
+ */
 @Injectable()
 export class ToneAudioService {
 
+  /**
+   * numOfVoices is used to create the PolySynth
+   *   
+   * @type {number}
+   * @const
+   */
   numOfVoices: number = 4;
-  
+
+ /**
+  * polySynth is used to play multiple notes (i.e. chords) 
+  */ 
   polySynth: PolySynth = new PolySynth(this.numOfVoices, Synth).toMaster();
 
   constructor() { }
@@ -17,18 +31,20 @@ export class ToneAudioService {
   ngOnInit() {
   }
 
+  /**
+   * playChord
+   * 
+   * @param chord  The chord that is going to be played via tone
+   */
   playChord(chord: Chord) {
-
-    //let numOfVoices: number = chord.notes.length;
-
-    //let synth: PolySynth = new PolySynth(numOfVoices, Synth).toMaster();
     this.polySynth.triggerAttackRelease(chord.notes, "2n");
-
-    //let synth: PolySynth = new PolySynth(4, Synth).toMaster();
-    //synth.triggerAttackRelease(["C4", "E4", "G4", "B4"], "2n");
-
   }
 
+  /**
+   * playScale
+   * 
+   * @param scale  The scale that is going to be played via tone
+   */
   playScale(scale: Scale) {
     /*
     Transport.stop();
@@ -68,7 +84,8 @@ export class ToneAudioService {
 
   }
 
-  playChordProgression(chords: Chord[]) {/*
+  playChordProgression(chords: Chord[]) {
+    /*
     Transport.stop();
     Transport.cancel(0);
 

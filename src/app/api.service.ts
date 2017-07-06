@@ -11,6 +11,11 @@ import { Chord } from './chord';
 
 const API_URL = environment.apiUrl;
 
+/**
+ * @class ApiService
+ * 
+ * Gets information pertaining to scales and chords from JSON server
+ */
 @Injectable()
 export class ApiService {
 
