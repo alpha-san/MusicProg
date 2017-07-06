@@ -61,7 +61,7 @@ export class SongCreatorComponent implements OnInit {
 
   generateMidi() {
     this.onGenerateMidi.emit();
-    this.elRef.nativeElement.querySelector('#downloadMidiLink').click();
+    this.elRef.nativeElement.querySelector('#song-footer-generate-midi-button-hidden').click();
   }
 
   playChordProgression() {
