@@ -1,16 +1,19 @@
 # MusicProg
 
-An easy way to learn music theory by creating chord progressions.
+An easy way to learn music theory via creating chord progressions.
 
-This project was generated with [Angular](https://github.com/angular), [Tonal](https://github.com/danigb/tonal), [Tone.js](https://github.com/Tonejs/Tone.js), and [MidiWriterJS](https://github.com/grimmdude/MidiWriterJS).
+This project was created using [Tonal](https://github.com/danigb/tonal), [Tone.js](https://github.com/Tonejs/Tone.js), and [MidiWriterJS](https://github.com/grimmdude/MidiWriterJS).
+
+Here is a [demo](https://peaceful-falls-54029.herokuapp.com/).
+
+## Current Features
+
+* Create a chord progression by selecting a scale and then selecting chords corresponding to that scale
+* Export chord progression into .MID file
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
 ## Build
 
@@ -19,12 +22,3 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
