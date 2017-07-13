@@ -55,7 +55,7 @@
   },
   "_commentAboutDependencies": "devDependencies after @angular/cli below",
   "engines": {
-    "node": "7.10.0",
+    "node": "7.10.1",
     "npm": "5.0.3"
   }
 }
