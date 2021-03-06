@@ -12,7 +12,7 @@
 
       <div class="songcreator-form-element">
         <button id="songcreator-scale-edit-button" class="btn btn-default" (click)="showScaleSelection()">{{song.scale ? (song.scale.name + ' ' + song.scale.type) : 'n/a'}} </button>
-        <span class="songcreator-form-element-label">{{song.scale ? 'Change Scale' : 'Add Scale' }}</span> 
+        <span class="songcreator-form-element-label">{{song.scale ? 'Change Scale' : 'Select Scale' }}</span> 
       </div>
 
       <div class="songcreator-form-element">
@@ -51,9 +51,20 @@
 
 
   <div class="song-footer">
-    <button class="song-footer-generate-midi-button" (click)="generateMidi()">Generate Midi</button>
-    <a id="song-footer-generate-midi-button-hidden" download="{{(song.name) ? (song.name + '.mid') : 'mysong.mid'}}" [href]="midiFileUrl"
-      target="_blank" #downloadMidiButton>DOWNLOAD MIDI</a>
+    <button
+      class="song-footer-generate-midi-button"
+      (click)="generateMidi()"
+      [disabled]="(!song.chords)">
+      Generate Midi
+    </button>
+    <a 
+      id="song-footer-generate-midi-button-hidden"
+      download="{{(song.name) ? (song.name + '.mid') : 'mysong.mid'}}"
+      [href]="midiFileUrl"
+      target="_blank"
+      #downloadMidiButton>
+      DOWNLOAD MIDI
+    </a>
   </div>
 
 </div>

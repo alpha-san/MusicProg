@@ -67,8 +67,4 @@ export class SongCreatorComponent implements OnInit {
   playChordProgression() {
     this.onPlayChordProgression.emit();
   }
-
-
-
-
 }

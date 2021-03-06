@@ -84,7 +84,7 @@ export class ChordProgGeneratorService {
     this.track.setTempo(this.bpm);
 
     for (let chord of this.chords) {
-      let note = new NoteEvent({pitch:chord.notes, duration: '4'});
+      let note = new NoteEvent({pitch:chord.notes, duration: '1'});
       this.track.addEvent(note);
     }
 

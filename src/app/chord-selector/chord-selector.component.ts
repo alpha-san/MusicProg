@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Song } from '../song';
 import { Chord } from '../chord';
 
 @Component({
@@ -29,6 +30,9 @@ export class ChordSelectorComponent implements OnInit {
   @Output()
   chordSelectionComplete: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  onGenerateMidi: EventEmitter<Song> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -52,6 +56,7 @@ export class ChordSelectorComponent implements OnInit {
   }
 
   onChordSelectionComplete() {
+    this.onGenerateMidi.emit();
     this.chordSelectionComplete.emit();
   }
 
