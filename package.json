@@ -43,7 +43,7 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "midi-writer-js": "^1.4.7",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.14.1",
     "protractor": "~5.1.2",
     "rxjs": "^5.1.0",
     "tonal": "^0.69.6",
@@ -57,5 +57,8 @@
   "engines": {
     "node": "7.10.1",
     "npm": "5.0.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
